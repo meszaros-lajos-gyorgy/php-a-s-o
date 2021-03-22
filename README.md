@@ -24,61 +24,102 @@ Every method is abide to the following rules ( or at least they should. if they 
 
 ### Array
 
-- of
-- isArray
-- isAssoc
-- reduce
-- reverse
-- reduceRight
-- sum
-- map
-- keys
-- values
-- equals
-- length
-- isEmpty
-- isNotEmpty
-- ensureArray
-- append
-- prepend
-- pluck
-- uniq
-- uniqByKey
-- sortBy
-- sortByKey
-- unnest
-- forEach
-- last
-- head
-- first
-- filter
-- find
-- any
-- includes
-- slice
-- join
-- pickRandom
+- **of** -
+- **isArray** -
+- **isAssoc** -
+- **reduce** -
+- **reverse** -
+- **reduceRight** -
+- **sum** -
+- **map** -
+- **keys** -
+- **values** -
+- **equals** -
+- **length** -
+- **isEmpty** -
+- **isNotEmpty** -
+- **ensureArray** -
+- **append** -
+- **prepend** -
+- **pluck** -
+- **uniq** -
+- **uniqByKey** -
+- **sortBy** -
+- **sortByKey** -
+- **unnest** -
+- **forEach** -
+- **last** -
+- **head** -
+- **first** -
+- **filter** -
+- **find** -
+- **any** -
+- **includes** -
+- **slice** -
+- **join** -
+- **pickRandom** -
 
 ### String
 
-- isString
-- length
-- isEmpty
-- isNotEmpty
-- toLower
-- toUpper
-- includes
-- split
-- equals
-- slice
-- startsWith
-- endsWith
-- trim
+> Most string operations come with an optional 3rd parameter called $caseSensitivity, which can be either `S::CASE_SENSITIVE` (default) or `S::CASE_INSENSITIVE`.
+
+- **isString** -
+- **length** -
+- **isEmpty** -
+- **isNotEmpty** -
+- **toLower** -
+- **toUpper** -
+- **includes** -
+- **split** -
+- **equals** -
+- **slice** -
+- **startsWith** -
+- **endsWith** - checks if the second parameter ends with the first
+
+  ```php
+  S::endsWith("ed", "throwed"); // -> true
+  S::endsWith("ed", "cat"); // -> false
+
+  S::endsWith("ED", "throwed"); // -> false
+  S::endsWith("Ed", "tHRoWeD", S::CASE_INSENSITIVE); // true
+  ```
+
+- **trim** - removes leading and trailing whitespaces from a string
+
+  ```php
+  S::trim("  asd f     "); // -> "asd f"
+  ```
 
 ### Object
 
-- isObject
-- toPairs
+- **isObject** - check whether the passed in argument is an object
+
+  ```php
+  $point = new stdClass();
+  $point->x = 10;
+  $point->y = 20;
+  O::isObject($point); // -> true
+
+  O::isObject("asdf"); // -> false
+  ```
+
+- **toPairs** - gets all keys and values of an array or object and returns it as array of key-value pairs
+
+  ```php
+  $point = new stdClass();
+  $point->x = 10;
+  $point->y = 20;
+  O::toPairs($point); // -> [["x", 10], ["y", 20]]
+
+  $user = [
+    "firstName" => "John",
+    "lastName" => "Doe"
+  ];
+  O::toPairs($user); // -> [["firstName", "John"], ["lastName", "Doe"]]
+
+  $temperatures = [75, 44, 36];
+  O::toPairs($temperatures); // -> [[0, 75], [1, 44], [2, 36]]
+  ```
 
 ## Future plans
 
