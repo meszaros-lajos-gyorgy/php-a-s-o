@@ -77,7 +77,7 @@ class S
 
     // S::slice(2, 5, "abcdefgh") -> "cde"
     // S::slice(-3, INF, "abcdefgh") -> "fgh"
-    public static function slice(int $startPos, int $endPos, string $data): string
+    public static function slice(int $startPos, $endPos, string $data): string
     {
         if ($startPos < 0) {
             $startPos = self::length($data) + $startPos;
