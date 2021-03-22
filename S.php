@@ -6,43 +6,43 @@ class S
     const CASE_INSENSITIVE = true;
 
     // S::isString("abc") -> true
-    public static function isString($data)
+    public static function isString($data): bool
     {
         return is_string($data);
     }
 
     // S::length("aaaa") -> 4
-    public static function length($data)
+    public static function length(string $data): int
     {
         return mb_strlen($data);
     }
 
     // S::isEmpty('asdf') -> false
-    public static function isEmpty($data)
+    public static function isEmpty(string $data): bool
     {
         return $data === '';
     }
 
     // S::isNotEmpty('asdf') -> true
-    public static function isNotEmpty($data)
+    public static function isNotEmpty(string $data): bool
     {
         return !self::isEmpty($data);
     }
 
     // S::toLower("aBcD") -> "abcd"
-    public static function toLower($data)
+    public static function toLower(string $data): string
     {
         return mb_strtolower($data);
     }
 
     // S::toUpper("abCd") -> "ABCD"
-    public static function toUpper($data)
+    public static function toUpper(string $data): string
     {
         return mb_strtoupper($data);
     }
 
     // S::includes("ab", "abcd") -> true
-    public static function includes($str, $data, $caseSensitivity = self::CASE_SENSITIVE)
+    public static function includes(string $str, string $data, $caseSensitivity = self::CASE_SENSITIVE): bool
     {
         if ($caseSensitivity === self::CASE_INSENSITIVE) {
             return self::includes(self::toLower($str), self::toLower($data), self::CASE_SENSITIVE);
@@ -52,7 +52,7 @@ class S
     }
 
     // S::split(' ', "aab bbc ccd") -> ['aab', 'bbc', 'ccd']
-    public static function split($separator, $data)
+    public static function split(string $separator, string $data): array
     {
         // TODO: ez nem biztos, hogy UTF-8 kompatibilis
         // https://www.php.net/manual/en/function.mb-strtolower.php#118378
@@ -60,7 +60,7 @@ class S
     }
 
     // S::equals("aaa", "aaa") -> true
-    public static function equals($str, $data, $caseSensitivity = self::CASE_SENSITIVE)
+    public static function equals(string $str, string $data, $caseSensitivity = self::CASE_SENSITIVE): bool
     {
         if ($caseSensitivity === self::CASE_INSENSITIVE) {
             return self::toLower($str) === self::toLower($data);
@@ -71,7 +71,7 @@ class S
 
     // S::slice(2, 5, "abcdefgh") -> "cde"
     // S::slice(-3, INF, "abcdefgh") -> "fgh"
-    public static function slice($startPos, $endPos, $data)
+    public static function slice(int $startPos, int $endPos, string $data): string
     {
         if ($startPos < 0) {
             $startPos = self::length($data) + $startPos;
@@ -86,7 +86,7 @@ class S
 
     // S::startsWith("ab", "abcd") -> true
     // https://www.geeksforgeeks.org/php-startswith-and-endswith-functions/
-    public static function startsWith($startString, $data, $caseSensitivity = self::CASE_SENSITIVE)
+    public static function startsWith(string $startString, string $data, $caseSensitivity = self::CASE_SENSITIVE): bool
     {
         $len = self::length($startString);
         if ($len === 0) {
@@ -97,7 +97,7 @@ class S
 
     // S::endsWith("ab", "abcd") -> false
     // https://www.geeksforgeeks.org/php-startswith-and-endswith-functions/
-    public static function endsWith($endString, $data, $caseSensitivity = self::CASE_SENSITIVE)
+    public static function endsWith(string $endString, string $data, $caseSensitivity = self::CASE_SENSITIVE): bool
     {
         $len = self::length($endString);
         if ($len === 0) {
@@ -107,7 +107,7 @@ class S
     }
 
     // S::trim("    123  ") -> "123"
-    public static function trim($data)
+    public static function trim(string $data): string
     {
         return trim($data);
     }

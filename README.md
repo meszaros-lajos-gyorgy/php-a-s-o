@@ -35,9 +35,13 @@ _TODO_
 
 ## Future plans
 
-I plan on adding type hinting, where possible.
+I keep adding methods as I come across the need for them, so if you don't see a method you would like to use, then 1) PRs are welcome, 2) Issues are welcome.
 
-Also, I keep adding methods as I come across the need for them, so if you don't see a method you would like to use, then 1) PRs are welcome, 2) Issues are welcome.
+As soon as linters and other tools start recognizing [union types](https://php.watch/versions/8.0/union-types), then I'll add those in the type hinting as well.
+
+[Mixed type](https://wiki.php.net/rfc/union_types_v2#mixed_type) will be added later to PHP, so until then type hinting will look incomplete.
+
+I should be able to turn this into a composer package.
 
 ## FAQ
 
@@ -69,4 +73,4 @@ Plus, sometimes the function name I would like to use is already taken by PHP, l
 
 ## Licence
 
-Do whatever you like with the code
+Do whatever you like with the code. As long as it saves you from the usual PHP headaches, then I'm happy.
