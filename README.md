@@ -18,24 +18,71 @@ Every method is abide to the following rules ( or at least they should. if they 
 - **not casting any of the input parameters** - it's the same as for the validation, you should check the data you pass to the function beforehand
 - **does only a single, well defined thing** - small is beautiful, and maintainable - and probably easier to test later on when I'll get the willpower to write tests for this lib
 - **null return values on error** - when an error happens and the underlying php function returns false (eg. end or strpos), then it's being normalized to null
+- **camelCase naming**
 
 ## API
 
 ### Array
 
-_TODO_
+- of
+- isArray
+- isAssoc
+- reduce
+- reverse
+- reduceRight
+- sum
+- map
+- keys
+- values
+- equals
+- length
+- isEmpty
+- isNotEmpty
+- ensureArray
+- append
+- prepend
+- pluck
+- uniq
+- uniqByKey
+- sortBy
+- sortByKey
+- unnest
+- forEach
+- last
+- head
+- first
+- filter
+- find
+- any
+- includes
+- slice
+- join
+- pickRandom
 
 ### String
 
-_TODO_
+- isString
+- length
+- isEmpty
+- isNotEmpty
+- toLower
+- toUpper
+- includes
+- split
+- equals
+- slice
+- startsWith
+- endsWith
+- trim
 
 ### Object
 
-_TODO_
+- isObject
+- toPairs
 
 ## Future plans
 
-I keep adding methods as I come across the need for them, so if you don't see a method you would like to use, then 1) PRs are welcome, 2) Issues are welcome.
+I keep adding methods as I come across the need for them, so if you're missing a method you'd use, then 1) PRs are welcome, 2) Issues are welcome.
 
 As soon as linters and other tools start recognizing [union types](https://php.watch/versions/8.0/union-types), then I'll add those in the type hinting as well.
 
