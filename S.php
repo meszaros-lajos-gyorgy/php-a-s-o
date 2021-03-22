@@ -76,13 +76,13 @@ class S
     }
 
     // S::slice(2, 5, "abcdefgh") -> "cde"
-    // S::slice(-3, INF, "abcdefgh") -> "fgh"
-    public static function slice(int $startPos, $endPos, string $data): string
+    // S::slice(-3, PHP_INT_MAX, "abcdefgh") -> "fgh"
+    public static function slice(int $startPos, int $endPos, string $data): string
     {
         if ($startPos < 0) {
             $startPos = self::length($data) + $startPos;
         }
-        if ($endPos === INF) {
+        if ($endPos === PHP_INT_MAX) {
             $endPos = self::length($data);
         } elseif ($endPos < 0) {
             $endPos = self::length($data) + $endPos;
@@ -115,7 +115,7 @@ class S
         if ($len === 0) {
             return true;
         }
-        return self::equals(self::slice(-$len, INF, $data), $endString, $caseSensitivity);
+        return self::equals(self::slice(-$len, PHP_INT_MAX, $data), $endString, $caseSensitivity);
     }
 
     // S::trim("    123  ") -> "123"
