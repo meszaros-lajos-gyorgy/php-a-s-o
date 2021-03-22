@@ -213,21 +213,36 @@ class A
     }
 
     // A::last(['aa', 'bb', 'cc']) -> 'cc'
+    // A::last([]) -> null
     public static function last(array $data)
     {
+        if (self::isEmpty($data)) {
+            return null;
+        }
+
         return end($data);
     }
 
     // A::head(['aa', 'bb', 'cc']) -> 'aa'
+    // A::head([]) -> null
     public static function head(array $data)
     {
+        if (self::isEmpty($data)) {
+            return null;
+        }
+
         return reset($data);
     }
 
-    // A::first(['aa', 'bb', 'cc']) -> 'aa'
     // alias for head()
+    // A::first(['aa', 'bb', 'cc']) -> 'aa'
+    // A::first([]) -> null
     public static function first(array $data)
     {
+        if (self::isEmpty($data)) {
+            return null;
+        }
+
         return self::head($data);
     }
 
@@ -243,9 +258,9 @@ class A
         $results = self::filter($fn, $data);
         if (self::isEmpty($results)) {
             return null;
-        } else {
-            return self::first($results);
         }
+
+        return self::first($results);
     }
 
     // A::find(x => x.a === 10, [['a' => 8], ['a' => 10]]) -> true
@@ -263,7 +278,7 @@ class A
     // A::slice(2, 4, [1, 2, 3, 4, 5]) -> [3, 4, 5]
     public static function slice(int $fromIndex, int $toIndex, array $data): array
     {
-        // TODO: negatív számokkal is menjen
+        // TODO: make it work with negative numbers
         return array_slice($data, $fromIndex, $toIndex);
     }
 
