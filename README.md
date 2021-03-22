@@ -1,4 +1,4 @@
-# php-a-s-o
+# PHP Array/String/Object functions
 
 Yet another collection of PHP functions for manipulating Arrays, Strings and Objects - based on [ramda.js](https://ramdajs.com/)
 
