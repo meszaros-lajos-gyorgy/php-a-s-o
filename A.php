@@ -44,8 +44,9 @@ class A
     }
 
     // A::sum([1, 2, 3]) -> 6
-    public static function sum(array $data) //: int|float
+    public static function sum(array $data)
     {
+        //: int|float
         return array_sum($data);
     }
 
@@ -151,8 +152,12 @@ class A
     }
 
     // A::sortByKey('age', 'number', 'asc', [['age' => 10, ...], ['age' => 5, ...]]) -> [['age' => 5, ...], ['age' => 10, ...]]
-    public static function sortByKey($key, string $type = 'date', string $direction = 'asc', array $data): array
-    {
+    public static function sortByKey(
+        $key,
+        string $type = 'date',
+        string $direction = 'asc',
+        array $data
+    ): array {
         switch ($type) {
             case 'string':
                 if ($direction === 'desc') {

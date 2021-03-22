@@ -3,7 +3,8 @@
 class O
 {
     // O::isObject(new stdClass()) -> true
-    public static function isObject($data): bool {
+    public static function isObject($data): bool
+    {
         return is_object($data);
     }
 

@@ -42,8 +42,11 @@ class S
     }
 
     // S::includes("ab", "abcd") -> true
-    public static function includes(string $str, string $data, $caseSensitivity = self::CASE_SENSITIVE): bool
-    {
+    public static function includes(
+        string $str,
+        string $data,
+        $caseSensitivity = self::CASE_SENSITIVE
+    ): bool {
         if ($caseSensitivity === self::CASE_INSENSITIVE) {
             return self::includes(self::toLower($str), self::toLower($data), self::CASE_SENSITIVE);
         } else {
@@ -60,8 +63,11 @@ class S
     }
 
     // S::equals("aaa", "aaa") -> true
-    public static function equals(string $str, string $data, $caseSensitivity = self::CASE_SENSITIVE): bool
-    {
+    public static function equals(
+        string $str,
+        string $data,
+        $caseSensitivity = self::CASE_SENSITIVE
+    ): bool {
         if ($caseSensitivity === self::CASE_INSENSITIVE) {
             return self::toLower($str) === self::toLower($data);
         } else {
@@ -86,8 +92,11 @@ class S
 
     // S::startsWith("ab", "abcd") -> true
     // https://www.geeksforgeeks.org/php-startswith-and-endswith-functions/
-    public static function startsWith(string $startString, string $data, $caseSensitivity = self::CASE_SENSITIVE): bool
-    {
+    public static function startsWith(
+        string $startString,
+        string $data,
+        $caseSensitivity = self::CASE_SENSITIVE
+    ): bool {
         $len = self::length($startString);
         if ($len === 0) {
             return true;
@@ -97,8 +106,11 @@ class S
 
     // S::endsWith("ab", "abcd") -> false
     // https://www.geeksforgeeks.org/php-startswith-and-endswith-functions/
-    public static function endsWith(string $endString, string $data, $caseSensitivity = self::CASE_SENSITIVE): bool
-    {
+    public static function endsWith(
+        string $endString,
+        string $data,
+        $caseSensitivity = self::CASE_SENSITIVE
+    ): bool {
         $len = self::length($endString);
         if ($len === 0) {
             return true;
