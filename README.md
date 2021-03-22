@@ -17,6 +17,21 @@ Every method is abide to the following rules ( or at least they should. if they 
 - **not doing any validation on the parameters** - if you are using a method from `A`, then you better be sending it an array. PHP is a loosely typed language and you could spend all day validating input parameters.
 - **not casting any of the input parameters** - it's the same as for the validation, you should check the data you pass to the function beforehand
 - **does only a single, well defined thing** - small is beautiful, and maintainable - and probably easier to test later on when I'll get the willpower to write tests for this lib
+- **null return values on error** - when an error happens and the underlying php function returns false (eg. end or strpos), then it's being normalized to null
+
+## API
+
+### Array
+
+_TODO_
+
+### String
+
+_TODO_
+
+### Object
+
+_TODO_
 
 ## Future plans
 
