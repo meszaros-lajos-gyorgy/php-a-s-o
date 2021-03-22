@@ -78,9 +78,17 @@ Every method is abide to the following rules ( or at least they should. if they 
 
   ```php
   S::endsWith("ed", "throwed"); // -> true
-  S::endsWith("ed", "cat"); // -> false
+  ```
 
-  S::endsWith("ED", "throwed"); // -> false
+  ```php
+  S::endsWith("ed", "cat"); // -> false
+  ```
+
+  ```php
+  S::endsWith("ED", "throwed", S::CASE_SENSITIVE); // -> false
+  ```
+
+  ```php
   S::endsWith("Ed", "tHRoWeD", S::CASE_INSENSITIVE); // true
   ```
 
@@ -99,7 +107,9 @@ Every method is abide to the following rules ( or at least they should. if they 
   $point->x = 10;
   $point->y = 20;
   O::isObject($point); // -> true
+  ```
 
+  ```php
   O::isObject("asdf"); // -> false
   ```
 
@@ -110,13 +120,17 @@ Every method is abide to the following rules ( or at least they should. if they 
   $point->x = 10;
   $point->y = 20;
   O::toPairs($point); // -> [["x", 10], ["y", 20]]
+  ```
 
+  ```php
   $user = [
     "firstName" => "John",
     "lastName" => "Doe"
   ];
   O::toPairs($user); // -> [["firstName", "John"], ["lastName", "Doe"]]
+  ```
 
+  ```php
   $temperatures = [75, 44, 36];
   O::toPairs($temperatures); // -> [[0, 75], [1, 44], [2, 36]]
   ```
