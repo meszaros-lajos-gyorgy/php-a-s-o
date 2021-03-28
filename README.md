@@ -57,7 +57,7 @@ Every method is abide to the following rules ( or at least they should. if they 
 - **includes** -
 - **slice** -
 - **join** -
-- **pickRandom** -
+- **pickRandom** - selects a random item from the given array
 - **concat** - concatenates every argument into an array. if any of the arguments are arrays, then those will get unnested
 
 ### String
