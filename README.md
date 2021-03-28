@@ -24,7 +24,7 @@ Every method is abide to the following rules ( or at least they should. if they 
 
 ### Array
 
-- **of** -
+- **of** - concatenates every argument into an array as is
 - **isArray** -
 - **isAssoc** -
 - **reduce** -
@@ -38,7 +38,7 @@ Every method is abide to the following rules ( or at least they should. if they 
 - **length** -
 - **isEmpty** -
 - **isNotEmpty** -
-- **ensureArray** -
+- **ensureArray** - wraps parameter into an array if it's anything else, than a numeric array
 - **append** -
 - **prepend** -
 - **pluck** -
@@ -58,6 +58,7 @@ Every method is abide to the following rules ( or at least they should. if they 
 - **slice** -
 - **join** -
 - **pickRandom** -
+- **concat** - concatenates every argument into an array. if any of the arguments are arrays, then those will get unnested
 
 ### String
 

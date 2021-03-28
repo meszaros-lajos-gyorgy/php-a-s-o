@@ -3,9 +3,9 @@
 class A
 {
     // A::of(1, 2, 3) -> [1, 2, 3]
-    public static function of(): array
+    public static function of(...$args): array
     {
-        return func_get_args();
+        return $args;
     }
 
     // A::isArray([1, 2, 3]) -> true
@@ -154,8 +154,8 @@ class A
     // A::sortByKey('age', 'number', 'asc', [['age' => 10, ...], ['age' => 5, ...]]) -> [['age' => 5, ...], ['age' => 10, ...]]
     public static function sortByKey(
         $key,
-        string $type = 'date',
-        string $direction = 'asc',
+        string $type,
+        string $direction,
         array $data
     ): array {
         switch ($type) {
@@ -297,5 +297,12 @@ class A
     public static function pickRandom(array $data)
     {
         return $data[rand(0, self::length($data) - 1)];
+    }
+
+    // A::concat([1, 2], 3, [4, 5]) -> [1, 2, 3, 4, 5]
+    public static function concat(...$args) {
+        return self::unnest(A::map(function($arg) {
+            return self::ensureArray($arg);
+        },$args));
     }
 }
