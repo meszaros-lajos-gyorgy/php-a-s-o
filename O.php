@@ -30,7 +30,9 @@ class O
     {
         return A::reduce(
             function ($result, $key) use ($data) {
-                $result->{$key} = $data->{$key};
+                if (isset($data->{$key})) {
+                    $result->{$key} = $data->{$key};
+                }
                 return $result;
             },
             new \stdClass(),
