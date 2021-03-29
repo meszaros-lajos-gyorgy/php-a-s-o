@@ -135,6 +135,8 @@ Every method is abide to the following rules ( or at least they should. if they 
   O::toPairs($temperatures); // -> [[0, 75], [1, 44], [2, 36]]
   ```
 
+- **pick** -
+
 ## Future plans
 
 I keep adding methods as I come across the need for them, so if you're missing a method you'd use, then 1) PRs are welcome, 2) Issues are welcome.

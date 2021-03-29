@@ -24,4 +24,17 @@ class O
 
         return $entries;
     }
+
+    // $coord = {x:10, y:20, z:30}; O::pick(['x', 'y'], $coord) -> {x:10, y:20}
+    public static function pick(array $keys, object $data): object
+    {
+        return A::reduce(
+            function ($result, $key) use ($data) {
+                $result->{$key} = $data->{$key};
+                return $result;
+            },
+            new \stdClass(),
+            $keys
+        );
+    }
 }
