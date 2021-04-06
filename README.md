@@ -2,6 +2,12 @@
 
 A PHP library for manipulating Arrays, Strings and Objects - inspired by [ramda.js](https://ramdajs.com/)
 
+## Install
+
+```
+composer require mlg/shovel
+```
+
 ## Concepts
 
 Every method is abide to the following rules ( or at least they should. if they don't, then 1) PRs are welcome, 2) Issues are welcome ):
