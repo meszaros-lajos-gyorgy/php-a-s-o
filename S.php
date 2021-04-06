@@ -123,4 +123,9 @@ class S
     {
         return trim($data);
     }
+
+    // S::replace("a", "b", "appletini") -> "bppletini"
+    public static function replace(string $old, string $new, string $data): string {
+        return str_replace($old, $new, $data);
+    }
 }

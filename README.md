@@ -99,6 +99,12 @@ Every method is abide to the following rules ( or at least they should. if they 
   S::trim("  asd f     "); // -> "asd f"
   ```
 
+- **replace** - replaces string with another
+
+  ```php
+  S::replace("a", "b", "appletini"); // -> "bppletini"
+  ```
+
 ### Object
 
 - **isObject** - check whether the passed in argument is an object
