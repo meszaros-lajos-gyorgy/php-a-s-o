@@ -180,10 +180,6 @@ If I were to have a single, combined `includes` function, then I would have to d
 
 Plus, sometimes the function name I would like to use is already taken by PHP, like in the case of [S::split](https://www.php.net/manual/en/function.split.php)
 
-## Licence
-
-Do whatever you like with the code. As long as it saves you from the usual PHP headaches, then I'm happy.
-
 ## Misc information
 
 - ÁSÓ in hungarian means shovel
