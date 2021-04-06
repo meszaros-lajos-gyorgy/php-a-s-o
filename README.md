@@ -1,6 +1,6 @@
-# Shovel, a PHP Library for manipulating Arrays, Strings and Objects
+# Shovel
 
-Because [fuck](http://phpsadness.com/sad/4) [PHP](http://phpsadness.com/sad/15) [and](http://phpsadness.com/sad/48) [it's](http://phpsadness.com/sad/6) [inconsistent](http://phpsadness.com/sad/9) [functions](http://phpsadness.com/sad/8)!
+A PHP library for manipulating Arrays, Strings and Objects
 
 ## Concepts
 

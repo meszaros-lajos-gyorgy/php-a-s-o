@@ -1,6 +1,6 @@
 {
   "name": "mlgy/shovel",
-  "description": "PHP Array/String/Object functions",
+  "description": "A PHP library for manipulating Arrays, Strings and Objects",
   "type": "library",
   "authors": [
     {
