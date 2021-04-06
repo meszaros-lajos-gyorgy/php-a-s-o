@@ -1,5 +1,7 @@
 <?php
 
+namespace Shovel;
+
 class S
 {
     const CASE_SENSITIVE = false;

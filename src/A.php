@@ -1,5 +1,7 @@
 <?php
 
+namespace Shovel;
+
 class A
 {
     // A::of(1, 2, 3) -> [1, 2, 3]

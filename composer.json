@@ -1,0 +1,17 @@
+{
+  "name": "mlgy/shovel",
+  "description": "PHP Array/String/Object functions",
+  "type": "library",
+  "authors": [
+    {
+      "name": "Lajos Mészáros",
+      "email": "m_lajos@hotmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Shovel\\": ""
+    }
+  },
+  "require": {}
+}

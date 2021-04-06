@@ -1,6 +1,4 @@
-# PHP Array/String/Object functions
-
-Yet another collection of PHP functions for manipulating Arrays, Strings and Objects - based on [ramda.js](https://ramdajs.com/)
+# Shovel, a PHP Library for manipulating Arrays, Strings and Objects
 
 Because [fuck](http://phpsadness.com/sad/4) [PHP](http://phpsadness.com/sad/15) [and](http://phpsadness.com/sad/48) [it's](http://phpsadness.com/sad/6) [inconsistent](http://phpsadness.com/sad/9) [functions](http://phpsadness.com/sad/8)!
 

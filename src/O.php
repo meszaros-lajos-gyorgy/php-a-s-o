@@ -1,5 +1,7 @@
 <?php
 
+namespace Shovel;
+
 class O
 {
     // O::isObject(new stdClass()) -> true
