@@ -156,8 +156,6 @@ As soon as linters and other tools start recognizing [union types](https://php.w
 
 [Mixed type](https://wiki.php.net/rfc/union_types_v2#mixed_type) will be added later to PHP, so until then type hinting will look incomplete.
 
-I should be able to turn this into a composer package.
-
 ## FAQ
 
 > If the methods are all static and stateless, then why not just write simple functions?
