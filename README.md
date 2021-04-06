@@ -183,3 +183,7 @@ Plus, sometimes the function name I would like to use is already taken by PHP, l
 ## Licence
 
 Do whatever you like with the code. As long as it saves you from the usual PHP headaches, then I'm happy.
+
+## Misc information
+
+- ÁSÓ in hungarian means shovel
