@@ -1,5 +1,5 @@
 {
-  "name": "mlgy/shovel",
+  "name": "mlg/shovel",
   "description": "A PHP library for manipulating Arrays, Strings and Objects",
   "type": "library",
   "authors": [
@@ -10,7 +10,7 @@
   ],
   "autoload": {
     "psr-4": {
-      "Shovel\\": ""
+      "Shovel\\": "src/"
     }
   },
   "require": {}
