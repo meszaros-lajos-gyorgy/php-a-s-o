@@ -1,6 +1,6 @@
 # Shovel
 
-A PHP library for manipulating Arrays, Strings and Objects - inspired by [ramda](https://ramdajs.com/)
+A PHP library for manipulating Arrays, Strings and Objects - inspired by [ramda.js](https://ramdajs.com/)
 
 ## Concepts
 
