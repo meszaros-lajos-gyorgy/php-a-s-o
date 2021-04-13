@@ -43,11 +43,11 @@ Every method is abide to the following rules ( or at least they should. if they 
   ```
 
   ```php
-  A::isArray(['a' => 10]); // true
+  A::isArray(["a" => 10]); // true
   ```
 
   ```php
-  A::isArray('asdf'); // false
+  A::isArray("asdf"); // false
   ```
 
   ```php
@@ -71,7 +71,7 @@ Every method is abide to the following rules ( or at least they should. if they 
   ```
 
   ```php
-  A::isAssoc(['x' => 10, 'y' => 20]); // true
+  A::isAssoc(["x" => 10, "y" => 20]); // true
   ```
 
 - **reduce** -
@@ -204,7 +204,7 @@ Every method is abide to the following rules ( or at least they should. if they 
   $point2d->x = 10;
   $point2d->y = 20;
 
-  $point3d = O::assoc('z', 30, $point2d); // {"x": 10, "y": 20, "z": 30}
+  $point3d = O::assoc("z", 30, $point2d); // {"x": 10, "y": 20, "z": 30}
   ```
 
 - **dissoc** - removes a key from an object
@@ -215,7 +215,7 @@ Every method is abide to the following rules ( or at least they should. if they 
   $point3d->y = 20;
   $point3d->z = 30;
 
-  $point2d = O::dissoc('z', 30, $point3d); // {"x": 10, "y": 20}
+  $point2d = O::dissoc("z", 30, $point3d); // {"x": 10, "y": 20}
   ```
 
 ## Future plans
@@ -244,7 +244,8 @@ class A {
 }
 
 class S {
-  public static function includes($value, $data) {
+  public static function includes($value, $data)
+  {
     return mb_strpos($data, $str) !== false;
   }
 }
