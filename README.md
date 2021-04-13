@@ -218,6 +218,18 @@ Every method is abide to the following rules ( or at least they should. if they 
   $point2d = O::dissoc("z", 30, $point3d); // {"x": 10, "y": 20}
   ```
 
+- **has** - checks presence of a key inside an object and an associative array
+
+  uses `array_key_exists()` internally
+
+  ```php
+  $data = new stdClass();
+  $data->x = 10;
+
+  O::has('x', $data); // true
+  O::has('y', $data); // false
+  ```
+
 ## Future plans
 
 I keep adding methods as I come across the need for them, so if you're missing a method you'd use, then 1) PRs are welcome, 2) Issues are welcome.

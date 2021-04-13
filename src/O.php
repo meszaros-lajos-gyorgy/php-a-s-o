@@ -50,9 +50,14 @@ class O
         return $data;
     }
 
-    // O::dissoc('foo')
+    // O::dissoc('foo', {foo: 'bar', fizz: 'buzz'}) -> {fizz: 'buzz'}
     public static function dissoc(string $key, object $data): object {
         unset($data->{$key});
         return $data;
+    }
+
+    // O::has('x', {x:10, y:20}) -> true
+    public static function has(string $key, $data): bool {
+        return array_key_exists($key, $data);
     }
 }
