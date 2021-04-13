@@ -29,7 +29,21 @@ Every method is abide to the following rules ( or at least they should. if they 
 ### Array
 
 - **of** - concatenates every argument into an array as is
-- **isArray** -
+
+```php
+$items = A::of(1, 2, [3]); // [1, 2, [3]]
+```
+
+- **isArray** - checks whether the given parameter is an array (returns true for both numeric and associative)
+
+```php
+A::isArray([1, 2, 3]); // true
+A::isArray(['a' => 10]); // true
+A::isArray('asdf'); // false
+A::isArray(50); // false
+A::isArray(new stdClass()); // false
+```
+
 - **isAssoc** -
 - **reduce** -
 - **reverse** -
