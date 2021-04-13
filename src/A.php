@@ -243,15 +243,9 @@ class A
         return reset($data);
     }
 
-    // alias for head()
-    // A::first(['aa', 'bb', 'cc']) -> 'aa'
-    // A::first([]) -> null
+    // alias for A::head()
     public static function first(array $data)
     {
-        if (self::isEmpty($data)) {
-            return null;
-        }
-
         return self::head($data);
     }
 
