@@ -2,6 +2,8 @@
 
 namespace Shovel;
 
+use stdClass;
+
 class A
 {
     // A::of(1, 2, 3) -> [1, 2, 3]
@@ -306,5 +308,17 @@ class A
         return self::unnest(A::map(function($arg) {
             return self::ensureArray($arg);
         },$args));
+    }
+
+    // A::zipObj(['a', 'b'], [1, 2]) -> {a:1, b:2}
+    public static function zipObj(array $keys, array $values): object {
+        $_keys = self::uniq(self::concat(self::keys($keys), self::keys($values)));
+        $_keys = self::filter(function($key) use ($keys, $values) {
+            return array_key_exists($key, $keys) && array_key_exists($key, $values);
+        }, $_keys);
+
+        return self::reduce(function($result, $key) use ($keys, $values) {
+            return O::assoc($keys[$key], $values[$key], $result);
+        }, new stdClass(), $_keys);
     }
 }

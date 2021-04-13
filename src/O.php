@@ -2,6 +2,8 @@
 
 namespace Shovel;
 
+use stdClass;
+
 class O
 {
     // O::isObject(new stdClass()) -> true
@@ -37,8 +39,14 @@ class O
                 }
                 return $result;
             },
-            new \stdClass(),
+            new stdClass(),
             $keys
         );
+    }
+
+    // O::assoc('foo', 'bar', {}) -> {foo: 'bar'}
+    public static function assoc(string $key, $value, object $data): object {
+        $data->{$key} = $value;
+        return $data;
     }
 }
