@@ -49,4 +49,10 @@ class O
         $data->{$key} = $value;
         return $data;
     }
+
+    // O::dissoc('foo')
+    public static function dissoc(string $key, object $data): object {
+        unset($data->{$key});
+        return $data;
+    }
 }

@@ -156,7 +156,18 @@ $point2d = new stdClass();
 $point2d->x = 10;
 $point2d->y = 20;
 
-$point3d = O::assoc('z', 30, $point2d);
+$point3d = O::assoc('z', 30, $point2d); // {"x": 10, "y": 20, "z": 30}
+```
+
+- **dissoc** - removes a key from an object
+
+```php
+$point3d = new stdClass();
+$point3d->x = 10;
+$point3d->y = 20;
+$point3d->z = 30;
+
+$point2d = O::dissoc('z', 30, $point3d); // {"x": 10, "y": 20}
 ```
 
 ## Future plans
