@@ -30,21 +30,50 @@ Every method is abide to the following rules ( or at least they should. if they 
 
 - **of** - concatenates every argument into an array as is
 
-```php
-$items = A::of(1, 2, [3]); // [1, 2, [3]]
-```
+  ```php
+  $items = A::of(1, 2, [3]); // [1, 2, [3]]
+  ```
 
 - **isArray** - checks whether the given parameter is an array (returns true for both numeric and associative)
 
-```php
-A::isArray([1, 2, 3]); // true
-A::isArray(['a' => 10]); // true
-A::isArray('asdf'); // false
-A::isArray(50); // false
-A::isArray(new stdClass()); // false
-```
+  This uses the `is_array()` php function
 
-- **isAssoc** -
+  ```php
+  A::isArray([1, 2, 3]); // true
+  ```
+
+  ```php
+  A::isArray(['a' => 10]); // true
+  ```
+
+  ```php
+  A::isArray('asdf'); // false
+  ```
+
+  ```php
+  A::isArray(50); // false
+  ```
+
+  ```php
+  A::isArray(new stdClass()); // false
+  ```
+
+- **isAssoc** - checks whether the given parameter is an associative array. empty arrays are treated as normal arrays and the function will return false for them
+
+  The method is based on this solution: https://stackoverflow.com/a/173479/1806628
+
+  ```php
+  A::isAssoc([]); // false
+  ```
+
+  ```php
+  A::isAssoc([1, 2, 3]); // false;
+  ```
+
+  ```php
+  A::isAssoc(['x' => 10, 'y' => 20]); // true
+  ```
+
 - **reduce** -
 - **reverse** -
 - **reduceRight** -
@@ -77,6 +106,11 @@ A::isArray(new stdClass()); // false
 - **join** -
 - **pickRandom** - selects a random item from the given array
 - **concat** - concatenates every argument into an array. if any of the arguments are arrays, then those will get unnested
+
+  ```php
+  A::concat([1, 2], 3, [4, 5]); // [1, 2, 3, 4, 5]
+  ```
+
 - **zipObj** -
 
 ### String
