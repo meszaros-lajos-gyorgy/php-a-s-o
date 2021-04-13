@@ -151,24 +151,24 @@ Every method is abide to the following rules ( or at least they should. if they 
 
 - **assoc** - assigns value to an object via a given key. already existing keys will get overwritten
 
-```php
-$point2d = new stdClass();
-$point2d->x = 10;
-$point2d->y = 20;
+  ```php
+  $point2d = new stdClass();
+  $point2d->x = 10;
+  $point2d->y = 20;
 
-$point3d = O::assoc('z', 30, $point2d); // {"x": 10, "y": 20, "z": 30}
-```
+  $point3d = O::assoc('z', 30, $point2d); // {"x": 10, "y": 20, "z": 30}
+  ```
 
 - **dissoc** - removes a key from an object
 
-```php
-$point3d = new stdClass();
-$point3d->x = 10;
-$point3d->y = 20;
-$point3d->z = 30;
+  ```php
+  $point3d = new stdClass();
+  $point3d->x = 10;
+  $point3d->y = 20;
+  $point3d->z = 30;
 
-$point2d = O::dissoc('z', 30, $point3d); // {"x": 10, "y": 20}
-```
+  $point2d = O::dissoc('z', 30, $point3d); // {"x": 10, "y": 20}
+  ```
 
 ## Future plans
 
