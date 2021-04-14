@@ -60,4 +60,24 @@ class O
     public static function has(string $key, $data): bool {
         return array_key_exists($key, $data);
     }
+
+    public static function keys($data): array {
+        if (self::isObject($data)) {
+            return A::keys(get_object_vars($data));
+        }
+        if (A::isArray($data) && A::isAssoc($data)) {
+            return A::keys($data);
+        }
+        return [];
+    }
+
+    public static function values($data): array {
+        if (self::isObject($data)) {
+            return A::values(get_object_vars($data));
+        }
+        if (A::isArray($data) && A::isAssoc($data)) {
+            return A::values($data);
+        }
+        return [];
+    }
 }

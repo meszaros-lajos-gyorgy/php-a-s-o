@@ -24,6 +24,8 @@ Every method is abide to the following rules ( or at least they should. if they 
 - **null return values on error** - when an error happens and the underlying php function returns false (eg. end or strpos), then it's being normalized to null
 - **camelCase naming**
 
+Plain numeric arrays are handled best via the methods in A, while associative arrays and objects are handled via the methods in O.
+
 ## API
 
 ### Array
@@ -99,8 +101,79 @@ Every method is abide to the following rules ( or at least they should. if they 
 - **head** -
 - **first** -
 - **filter** -
-- **find** -
-- **any** -
+
+- **find** - calls the given function on the elements of an array and returns the value for the first match. if there's no match, it will return `null`
+
+  ```php
+  $data = [
+    ["a" => 8],
+    ["a" => 10],
+    ["a" => 12]
+  ];
+
+  $result = A::find(function($x) {
+    return $x["a"] === 10;
+  }, $data);
+
+  // $result = ["a" => 10]
+  ```
+
+  ```php
+  $data = [
+    ["a" => 8],
+    ["a" => 10],
+    ["a" => 12]
+  ];
+
+  $result = A::find(function($x) {
+    return $x["a"] === -4;
+  }, $data);
+
+  // $result = null
+  ```
+
+- **findIndex** - calls the given function on the elements of an array and returns the key for the first match. if there's no match it will return -1
+
+  ```php
+  $data = [
+    ["a" => 8],
+    ["a" => 10],
+    ["a" => 12]
+  ];
+
+  $result = A::findIndex(function($x) {
+    return $x["a"] === 10;
+  }, $data);
+
+  // $result = 1
+  ```
+
+  ```php
+  $data = [
+    ["a" => 8],
+    ["a" => 10],
+    ["a" => 12]
+  ];
+
+  $result = A::findIndex(function($x) {
+    return $x["a"] === -4;
+  }, $data);
+
+  // $result = -1
+  ```
+
+- **any** - calls the given predicate function on the elements in the given array and returns true if for at least one of them the predicate returns true
+
+  ```php
+  $data = [2, 3, 5, 6, 7, 9, 10];
+
+  $result = A::any(function($x) {
+    return $x % 5 === 0;
+  }, $data);
+
+  // $result = true
+  ```
+
 - **includes** -
 - **slice** -
 - **join** -
@@ -229,6 +302,9 @@ Every method is abide to the following rules ( or at least they should. if they 
   O::has('x', $data); // true
   O::has('y', $data); // false
   ```
+
+- **keys** -
+- **values** -
 
 ## Future plans
 

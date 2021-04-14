@@ -266,7 +266,22 @@ class A
         return self::first($results);
     }
 
-    // A::find(x => x.a === 10, [['a' => 8], ['a' => 10]]) -> true
+    // A::findIndex(x => x.a === 10, [['a' => 8], ['a' => 10]]) -> 1
+    public static function findIndex(callable $fn, array $data): int {
+        if (self::isEmpty($data)) {
+            return -1;
+        }
+
+        foreach ($data as $key => $value) {
+            if ($fn($value)) {
+                return $key;
+            }
+        }
+
+        return -1;
+    }
+
+    // A::any(x => x.a === 10, [['a' => 8], ['a' => 10]]) -> true
     public static function any(callable $fn, array $data): bool
     {
         return self::find($fn, $data) !== null;
