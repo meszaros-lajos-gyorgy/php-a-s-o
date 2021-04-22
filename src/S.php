@@ -130,4 +130,11 @@ class S
     public static function replace(string $old, string $new, string $data): string {
         return str_replace($old, $new, $data);
     }
+
+    // S::splitAt(3, "abcdef") -> ["abc", "def"]
+    public static function splitAt(int $index, string $data): array {
+        $first = self::slice(0, $index, $data);
+        $second = self::slice($index, PHP_INT_MAX, $data);
+        return [$first, $second];
+    }
 }

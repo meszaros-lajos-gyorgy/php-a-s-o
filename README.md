@@ -197,7 +197,18 @@ Plain numeric arrays are handled best via the methods in A, while associative ar
 - **toLower** -
 - **toUpper** -
 - **includes** -
-- **split** -
+- **split** - splits a string into multiple parts at points matching another string
+
+  ```php
+  S::split("/", "foo/bar/baz") // -> ["foo", "bar", "baz"]
+  ```
+
+- **splitAt** - splits a string into 2 at a given position
+
+  ```php
+  S::splitAt(3, "abcdef") // -> ["abc", "def"]
+  ```
+
 - **equals** -
 - **slice** -
 - **startsWith** -
