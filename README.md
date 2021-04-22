@@ -357,3 +357,11 @@ Plus, sometimes the function name I would like to use is already taken by PHP, l
 ## Misc information
 
 - ÁSÓ in hungarian means shovel
+
+## Credits
+
+https://www.geeksforgeeks.org/php-startswith-and-endswith-functions/ - used for S::startsWith() and S::endsWith()
+
+https://stackoverflow.com/a/173479/1806628 - used for A::isAssoc()
+
+https://www.php.net/manual/en/function.array-unique.php#116302 - used for A::uniqByKey()

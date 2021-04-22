@@ -19,7 +19,6 @@ class A
     }
 
     // A::isAssoc(['a' => 12]) -> true
-    // https://stackoverflow.com/a/173479/1806628
     public static function isAssoc(array $data): bool
     {
         if (self::isEmpty($data)) {
@@ -131,7 +130,6 @@ class A
     }
 
     // A::uniqByKey('color', [['color' => 'red', ...], ['color' => 'red', ...]]) -> [['color => 'red', ...]]
-    // https://www.php.net/manual/en/function.array-unique.php#116302
     public static function uniqByKey($key, array $data): array
     {
         $i = 0;
@@ -204,8 +202,8 @@ class A
     // A::unnest([[1, 2, 3], [3, 4, [5]]]) -> [1, 2, 3, 3, 4, [5]]
     public static function unnest($data, int $levels = 1): array
     {
-        // TODO: implementálni azt, hogy több level-re legyen jó
-        // talán elég csak annyi, hogy rekurzívan meghívjuk az unnest-et, amíg $levels-- > 0
+        // TODO: implement this to work with any $levels
+        // it might be enought just to do a recursion until --$levels === 0
         return self::reduce(
             function ($acc, $x) {
                 return self::append($x, $acc);
@@ -296,7 +294,6 @@ class A
     // A::slice(2, 4, [1, 2, 3, 4, 5]) -> [3, 4, 5]
     public static function slice(int $fromIndex, int $toIndex, array $data): array
     {
-        // TODO: make it work with negative numbers
         return array_slice($data, $fromIndex, $toIndex);
     }
 

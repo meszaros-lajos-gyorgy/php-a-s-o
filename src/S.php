@@ -59,8 +59,6 @@ class S
     // S::split(' ', "aab bbc ccd") -> ['aab', 'bbc', 'ccd']
     public static function split(string $separator, string $data): array
     {
-        // TODO: ez nem biztos, hogy UTF-8 kompatibilis
-        // https://www.php.net/manual/en/function.mb-strtolower.php#118378
         return explode($separator, $data);
     }
 
@@ -93,7 +91,6 @@ class S
     }
 
     // S::startsWith("ab", "abcd") -> true
-    // https://www.geeksforgeeks.org/php-startswith-and-endswith-functions/
     public static function startsWith(
         string $startString,
         string $data,
@@ -107,7 +104,6 @@ class S
     }
 
     // S::endsWith("ab", "abcd") -> false
-    // https://www.geeksforgeeks.org/php-startswith-and-endswith-functions/
     public static function endsWith(
         string $endString,
         string $data,
