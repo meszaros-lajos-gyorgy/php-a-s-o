@@ -247,6 +247,16 @@ class A
         return self::head($data);
     }
 
+    // A::tail([1, 2, 3]) -> [2, 3]
+    public static function tail(array $data): array {
+        return self::slice(1, PHP_INT_MAX, $data);
+    }
+
+    // A::init([1, 2, 3]) -> [1, 2]
+    public static function init(array $data): array {
+        return self::slice(0, -1, $data);
+    }
+
     // A::filter(x => x % 2 == 0, [1, 2, 3, 4, 5]) -> [2, 4]
     public static function filter(callable $fn, array $data): array
     {

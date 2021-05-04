@@ -97,9 +97,41 @@ Plain numeric arrays are handled best via the methods in A, while associative ar
 - **sortByKey** -
 - **unnest** -
 - **forEach** -
-- **last** -
-- **head** -
-- **first** -
+
+- **head** - returns the first element of an array, or null, if empty
+
+  ```php
+  A::head([1, 2, 3]) // -> 1
+  ```
+
+  ```php
+  A::head([]) // -> null
+  ```
+
+- **first** - alias for A::head()
+
+- **last** - returns the last element of an array, or null, if empty
+
+  ```php
+  A::last([1, 2, 3, 4, 5]) // -> 5
+  ```
+
+  ```php
+  A::last([]) // -> null
+  ```
+
+- **init** - returns a copy of a given array without the last element
+
+  ```php
+  A::init([1, 2, 3, 4, 5]) // -> [1, 2, 3, 4]
+  ```
+
+- **tail** - returns a copy of a given array without the first element
+
+  ```php
+  A::tail([1, 2, 3, 4, 5]) // -> [2, 3, 4, 5]
+  ```
+
 - **filter** -
 
 - **find** - calls the given function on the elements of an array and returns the value for the first match. if there's no match, it will return `null`
