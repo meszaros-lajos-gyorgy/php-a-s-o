@@ -263,7 +263,7 @@ class A
         return A::values(array_filter($data, $fn));
     }
 
-    // A::find(x => x.a === 10, [['a' => 8], ['a' => 10]]) -> ['a' => 10]
+    // A::find(x => x.a > 3, [['a' => 8], ['a' => 10]]) -> ['a' => 8]
     public static function find(callable $fn, array $data)
     {
         $results = self::filter($fn, $data);
@@ -272,6 +272,11 @@ class A
         }
 
         return self::first($results);
+    }
+
+    // A::findLast(x => x.a > 3, [['a' => 8], ['a' => 10]]) -> ['a' => 10]
+    public static function findLast(callable $fn, array $data) {
+        return self::find($fn, A::reverse($data));
     }
 
     // A::findIndex(x => x.a === 10, [['a' => 8], ['a' => 10]]) -> 1
@@ -290,9 +295,9 @@ class A
     }
 
     // A::findLastIndex(x => x.a > 3, [['a' => 8], ['a' => 10]]) -> 1
-    function findLastIndex(callable $fn, array $data): ?int
+    public static function findLastIndex(callable $fn, array $data): ?int
     {
-        return A::findIndex($fn, A::reverse($data));
+        return self::findIndex($fn, A::reverse($data));
     }
 
     // A::any(x => x.a === 10, [['a' => 8], ['a' => 10]]) -> true

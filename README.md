@@ -143,11 +143,9 @@ Plain numeric arrays are handled best via the methods in A, while associative ar
     ["a" => 12]
   ];
 
-  $result = A::find(function($x) {
-    return $x["a"] === 10;
-  }, $data);
+  $result = A::find(fn($x) => $x["a"] > 3, $data);
 
-  // $result = ["a" => 10]
+  // $result = ["a" => 8]
   ```
 
   ```php
@@ -157,14 +155,12 @@ Plain numeric arrays are handled best via the methods in A, while associative ar
     ["a" => 12]
   ];
 
-  $result = A::find(function($x) {
-    return $x["a"] === -4;
-  }, $data);
+  $result = A::find(fn($x) => $x["a"] === -4, $data);
 
   // $result = null
   ```
 
-- **findIndex** - calls the given function on the elements of an array and returns the key for the first match. if there's no match it will return null
+- **findLast** - calls the given function on the elements of an array and returns the value for the last match. if there's no match, it will return `null`
 
   ```php
   $data = [
@@ -173,9 +169,33 @@ Plain numeric arrays are handled best via the methods in A, while associative ar
     ["a" => 12]
   ];
 
-  $result = A::findIndex(function($x) {
-    return $x["a"] === 10;
-  }, $data);
+  $result = A::findLast(fn($x) => $x["a"] > 3, $data);
+
+  // $result = ["a" => 12]
+  ```
+
+  ```php
+  $data = [
+    ["a" => 8],
+    ["a" => 10],
+    ["a" => 12]
+  ];
+
+  $result = A::findLast(fn($x) => $x["a"] === -4, $data);
+
+  // $result = null
+  ```
+
+- **findIndex** - calls the given function on the elements of an array and returns the key for the first match. if there's no match it will return `null`
+
+  ```php
+  $data = [
+    ["a" => 8],
+    ["a" => 10],
+    ["a" => 12]
+  ];
+
+  $result = A::findIndex(fn($x) => $x["a"] === 10, $data);
 
   // $result = 1
   ```
@@ -187,14 +207,12 @@ Plain numeric arrays are handled best via the methods in A, while associative ar
     ["a" => 12]
   ];
 
-  $result = A::findIndex(function($x) {
-    return $x["a"] === -4;
-  }, $data);
+  $result = A::findIndex(fn($x) => $x["a"] === -4, $data);
 
   // $result = null
   ```
 
-- **findLastIndex** - calls the given function on the elements of an array and returns the key for the last match. if there's no match it will return null
+- **findLastIndex** - calls the given function on the elements of an array and returns the key for the last match. if there's no match it will return `null`
 
   ```php
   $data = [
@@ -203,9 +221,7 @@ Plain numeric arrays are handled best via the methods in A, while associative ar
     ["a" => 12]
   ];
 
-  $result = A::findIndex(function($x) {
-    return $x["a"] > 3;
-  }, $data);
+  $result = A::findLastIndex(fn($x) => $x["a"] > 3, $data);
 
   // $result = 2
   ```
@@ -217,9 +233,7 @@ Plain numeric arrays are handled best via the methods in A, while associative ar
     ["a" => 12]
   ];
 
-  $result = A::findIndex(function($x) {
-    return $x["a"] > 500;
-  }, $data);
+  $result = A::findLastIndex(fn($x) => $x["a"] > 500, $data);
 
   // $result = null
   ```
@@ -229,9 +243,7 @@ Plain numeric arrays are handled best via the methods in A, while associative ar
   ```php
   $data = [2, 3, 5, 6, 7, 9, 10];
 
-  $result = A::any(function($x) {
-    return $x % 5 === 0;
-  }, $data);
+  $result = A::any(fn($x) => $x % 5 === 0, $data);
 
   // $result = true
   ```
