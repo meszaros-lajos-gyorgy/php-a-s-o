@@ -132,7 +132,29 @@ Plain numeric arrays are handled best via the methods in A, while associative ar
   A::tail([1, 2, 3, 4, 5]) // -> [2, 3, 4, 5]
   ```
 
-- **filter** -
+- **filter** - calls the given function on the elements of an array and returns every value where the function gave truthy value
+
+  ```php
+  $numbers = [1, 2, 3, 4, 5, 6];
+
+  function isOdd($n){
+    return $n % 2 === 0;
+  }
+
+  A::filter('isOdd', $numbers); // [2, 4, 6]
+  ```
+
+- **reject** - calls the given function on the elements of an array and removes every value where the function gave truthy value
+
+  ```php
+  $numbers = [1, 2, 3, 4, 5, 6];
+
+  function isOdd($n){
+    return $n % 2 === 0;
+  }
+
+  A::reject('isOdd', $numbers); // [1, 3, 5]
+  ```
 
 - **find** - calls the given function on the elements of an array and returns the value for the first match. if there's no match, it will return `null`
 

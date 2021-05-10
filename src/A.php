@@ -260,7 +260,12 @@ class A
     // A::filter(x => x % 2 == 0, [1, 2, 3, 4, 5]) -> [2, 4]
     public static function filter(callable $fn, array $data): array
     {
-        return A::values(array_filter($data, $fn));
+        return self::values(array_filter($data, $fn));
+    }
+
+    public static function reject(callable $fn, array $data): array
+    {
+        return self::filter(fn($value) => !$fn($value), $data);
     }
 
     // A::find(x => x.a > 3, [['a' => 8], ['a' => 10]]) -> ['a' => 8]
@@ -271,7 +276,7 @@ class A
 
     // A::findLast(x => x.a > 3, [['a' => 8], ['a' => 10]]) -> ['a' => 10]
     public static function findLast(callable $fn, array $data) {
-        return self::find($fn, A::reverse($data));
+        return self::find($fn, self::reverse($data));
     }
 
     // A::findIndex(x => x.a === 10, [['a' => 8], ['a' => 10]]) -> 1
@@ -292,7 +297,7 @@ class A
     // A::findLastIndex(x => x.a > 3, [['a' => 8], ['a' => 10]]) -> 1
     public static function findLastIndex(callable $fn, array $data): ?int
     {
-        return self::findIndex($fn, A::reverse($data));
+        return self::findIndex($fn, self::reverse($data));
     }
 
     // A::any(x => x.a === 10, [['a' => 8], ['a' => 10]]) -> true
@@ -327,7 +332,7 @@ class A
 
     // A::concat([1, 2], 3, [4, 5]) -> [1, 2, 3, 4, 5]
     public static function concat(...$args) {
-        return self::unnest(A::map(fn($arg) => self::ensureArray($arg),$args));
+        return self::unnest(self::map(fn($arg) => self::ensureArray($arg),$args));
     }
 
     // A::zipObj(['a', 'b'], [1, 2]) -> {a:1, b:2}
