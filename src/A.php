@@ -277,7 +277,7 @@ class A
     // A::findIndex(x => x.a === 10, [['a' => 8], ['a' => 10]]) -> 1
     public static function findIndex(callable $fn, array $data): int {
         if (self::isEmpty($data)) {
-            return -1;
+            return null;
         }
 
         foreach ($data as $key => $value) {
@@ -286,7 +286,7 @@ class A
             }
         }
 
-        return -1;
+        return null;
     }
 
     // A::any(x => x.a === 10, [['a' => 8], ['a' => 10]]) -> true

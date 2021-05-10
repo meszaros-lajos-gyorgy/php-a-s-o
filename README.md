@@ -191,7 +191,7 @@ Plain numeric arrays are handled best via the methods in A, while associative ar
     return $x["a"] === -4;
   }, $data);
 
-  // $result = -1
+  // $result = null
   ```
 
 - **any** - calls the given predicate function on the elements in the given array and returns true if for at least one of them the predicate returns true
