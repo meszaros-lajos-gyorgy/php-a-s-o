@@ -266,12 +266,7 @@ class A
     // A::find(x => x.a > 3, [['a' => 8], ['a' => 10]]) -> ['a' => 8]
     public static function find(callable $fn, array $data)
     {
-        $results = self::filter($fn, $data);
-        if (self::isEmpty($results)) {
-            return null;
-        }
-
-        return self::first($results);
+        return self::head(self::filter($fn, $data));
     }
 
     // A::findLast(x => x.a > 3, [['a' => 8], ['a' => 10]]) -> ['a' => 10]
@@ -332,20 +327,13 @@ class A
 
     // A::concat([1, 2], 3, [4, 5]) -> [1, 2, 3, 4, 5]
     public static function concat(...$args) {
-        return self::unnest(A::map(function($arg) {
-            return self::ensureArray($arg);
-        },$args));
+        return self::unnest(A::map(fn($arg) => self::ensureArray($arg),$args));
     }
 
     // A::zipObj(['a', 'b'], [1, 2]) -> {a:1, b:2}
     public static function zipObj(array $keys, array $values): object {
         $_keys = self::uniq(self::concat(self::keys($keys), self::keys($values)));
-        $_keys = self::filter(function($key) use ($keys, $values) {
-            return array_key_exists($key, $keys) && array_key_exists($key, $values);
-        }, $_keys);
-
-        return self::reduce(function($result, $key) use ($keys, $values) {
-            return O::assoc($keys[$key], $values[$key], $result);
-        }, new stdClass(), $_keys);
+        $_keys = self::filter(fn($key) => array_key_exists($key, $keys) && array_key_exists($key, $values), $_keys);
+        return self::reduce(fn($result, $key) => O::assoc($keys[$key], $values[$key], $result), new stdClass(), $_keys);
     }
 }
