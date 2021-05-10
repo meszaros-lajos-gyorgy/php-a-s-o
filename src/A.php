@@ -289,6 +289,12 @@ class A
         return null;
     }
 
+    // A::findLastIndex(x => x.a > 3, [['a' => 8], ['a' => 10]]) -> 1
+    function findLastIndex(callable $fn, array $data): ?int
+    {
+        return A::findIndex($fn, A::reverse($data));
+    }
+
     // A::any(x => x.a === 10, [['a' => 8], ['a' => 10]]) -> true
     public static function any(callable $fn, array $data): bool
     {

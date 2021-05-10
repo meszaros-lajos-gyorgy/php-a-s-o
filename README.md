@@ -164,7 +164,7 @@ Plain numeric arrays are handled best via the methods in A, while associative ar
   // $result = null
   ```
 
-- **findIndex** - calls the given function on the elements of an array and returns the key for the first match. if there's no match it will return -1
+- **findIndex** - calls the given function on the elements of an array and returns the key for the first match. if there's no match it will return null
 
   ```php
   $data = [
@@ -189,6 +189,36 @@ Plain numeric arrays are handled best via the methods in A, while associative ar
 
   $result = A::findIndex(function($x) {
     return $x["a"] === -4;
+  }, $data);
+
+  // $result = null
+  ```
+
+- **findLastIndex** - calls the given function on the elements of an array and returns the key for the last match. if there's no match it will return null
+
+  ```php
+  $data = [
+    ["a" => 8],
+    ["a" => 10],
+    ["a" => 12]
+  ];
+
+  $result = A::findIndex(function($x) {
+    return $x["a"] > 3;
+  }, $data);
+
+  // $result = 2
+  ```
+
+  ```php
+  $data = [
+    ["a" => 8],
+    ["a" => 10],
+    ["a" => 12]
+  ];
+
+  $result = A::findIndex(function($x) {
+    return $x["a"] > 500;
   }, $data);
 
   // $result = null
