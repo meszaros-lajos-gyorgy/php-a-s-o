@@ -280,7 +280,7 @@ class A
     }
 
     // A::findIndex(x => x.a === 10, [['a' => 8], ['a' => 10]]) -> 1
-    public static function findIndex(callable $fn, array $data): int {
+    public static function findIndex(callable $fn, array $data): ?int {
         if (self::isEmpty($data)) {
             return null;
         }
