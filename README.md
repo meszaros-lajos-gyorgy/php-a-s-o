@@ -417,13 +417,7 @@ Plain numeric arrays are handled best via the methods in A, while associative ar
 
 I keep adding methods as I come across the need for them, so if you're missing a method you'd use, then 1) PRs are welcome, 2) Issues are welcome.
 
-As soon as linters and other tools start recognizing [union types](https://php.watch/versions/8.0/union-types), then I'll add those in the type hinting as well.
-
-[Mixed type](https://wiki.php.net/rfc/union_types_v2#mixed_type) will be added later to PHP, so until then type hinting will look incomplete.
-
-## FAQ
-
-> If the methods are all static and stateless, then why not just write simple functions?
+## If the methods are all static and stateless, then why not just write simple functions?
 
 There are multiple functions, which have the same parameter signature, but operate with different parameter types.
 To avoid having to type check the parameters at every function call I've chose to namespace the functions based on the types they work on into static methods.
@@ -449,10 +443,6 @@ class S {
 If I were to have a single, combined `includes` function, then I would have to do type checking every time and it would make the code unnecessarily noisy.
 
 Plus, sometimes the function name I would like to use is already taken by PHP, like in the case of [S::split](https://www.php.net/manual/en/function.split.php)
-
-## Misc information
-
-- ÁSÓ in hungarian means shovel
 
 ## Credits
 
