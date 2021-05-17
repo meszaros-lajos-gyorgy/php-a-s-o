@@ -331,7 +331,7 @@ class A
     }
 
     // A::concat([1, 2], 3, [4, 5]) -> [1, 2, 3, 4, 5]
-    public static function concat(...$args) {
+    public static function concat(...$args): array {
         return self::unnest(self::map(fn($arg) => self::ensureArray($arg),$args));
     }
 
