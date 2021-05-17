@@ -61,6 +61,7 @@ class O
         return array_key_exists($key, $data);
     }
 
+    // O::keys(['a' => 1, 'b' => 2]) -> ['a', 'b']
     public static function keys($data): array {
         if (self::isObject($data)) {
             return A::keys(get_object_vars($data));
@@ -71,6 +72,7 @@ class O
         return [];
     }
 
+    // O::values(['a' => 1, 'b' => 2]) -> [1, 2]
     public static function values($data): array {
         if (self::isObject($data)) {
             return A::values(get_object_vars($data));
