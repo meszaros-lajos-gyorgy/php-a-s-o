@@ -32,6 +32,8 @@ Plain numeric arrays are handled best via the methods in A, while associative ar
 
 - **of** - concatenates every argument into an array as is
 
+  _See also: A::concat()_
+
   ```php
   $items = A::of(1, 2, [3]); // [1, 2, [3]]
   ```
@@ -87,7 +89,17 @@ Plain numeric arrays are handled best via the methods in A, while associative ar
 - **length** -
 - **isEmpty** -
 - **isNotEmpty** -
-- **ensureArray** - wraps parameter into an array if it's anything else, than a numeric array
+
+- **ensureArray** - wraps parameter into an array if it's not a numeric array
+
+  ```php
+  A::ensureArray(123); // [123]
+  ```
+
+  ```php
+  A::ensureArray([4, 5, 6]); // [4, 5, 6]
+  ```
+
 - **append** -
 - **prepend** -
 - **pluck** -
@@ -272,11 +284,14 @@ Plain numeric arrays are handled best via the methods in A, while associative ar
 
 - **includes** -
 - **contains** -
-
 - **slice** -
 - **join** -
+
 - **pickRandom** - selects a random item from the given array
-- **concat** - concatenates every argument into an array. if any of the arguments are arrays, then those will get unnested
+
+- **concat** - concatenates every argument into an array. if any of the arguments are numeric arrays, then those will get unnested
+
+  _See also: A::of()_
 
   ```php
   A::concat([1, 2], 3, [4, 5]); // [1, 2, 3, 4, 5]

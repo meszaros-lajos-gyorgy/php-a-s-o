@@ -106,15 +106,15 @@ class A
     }
 
     // A::append([4, 5, 6], [1, 2]) -> [1, 2, 4, 5, 6]
-    public static function append(array $arr, array $data): array
+    public static function append($value, array $data): array
     {
-        return array_merge($data, self::ensureArray($arr));
+        return self::concat($data, $value);
     }
 
     // A::prepend([4, 5, 6], [1, 2]) -> [4, 5, 6, 1, 2]
-    public static function prepend(array $arr, array $data): array
+    public static function prepend($value, array $data): array
     {
-        return array_merge(self::ensureArray($arr), $data);
+        return self::concat($value, $data);
     }
 
     // A::pluck('color', [['color' => 'red', ...], ['color' => 'green', ...]]) -> ['red', 'green']
