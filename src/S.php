@@ -53,6 +53,12 @@ class S
         }
     }
 
+    // alias for S::includes
+    public static function contains(string $str, string $data, $caseSensitivity = self::CASE_SENSITIVE): bool
+    {
+        return self::includes($str, $data, $caseSensitivity);
+    }
+
     // S::split(' ', "aab bbc ccd") -> ['aab', 'bbc', 'ccd']
     public static function split(string $separator, string $data): array
     {

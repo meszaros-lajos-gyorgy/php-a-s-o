@@ -312,6 +312,12 @@ class A
         return in_array($value, $data, true);
     }
 
+    // alias for A::includes
+    public static function contains($value, array $data): bool
+    {
+        return self::includes($value, $data);
+    }
+
     // A::slice(2, 4, [1, 2, 3, 4, 5]) -> [3, 4, 5]
     public static function slice(int $fromIndex, int $toIndex, array $data): array
     {

@@ -271,6 +271,8 @@ Plain numeric arrays are handled best via the methods in A, while associative ar
   ```
 
 - **includes** -
+- **contains** -
+
 - **slice** -
 - **join** -
 - **pickRandom** - selects a random item from the given array
@@ -358,6 +360,8 @@ Plain numeric arrays are handled best via the methods in A, while associative ar
   ```php
   S::includes('', 'butterfly'); // false -- edge case
   ```
+
+- **contains** - alias for S::includes()
 
 - **split** - splits a string into multiple parts at points matching another string
 
