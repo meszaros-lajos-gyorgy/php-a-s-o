@@ -44,11 +44,8 @@ class S
     }
 
     // S::includes("ab", "abcd") -> true
-    public static function includes(
-        string $str,
-        string $data,
-        $caseSensitivity = self::CASE_SENSITIVE
-    ): bool {
+    public static function includes(string $str, string $data, $caseSensitivity = self::CASE_SENSITIVE): bool
+    {
         if ($caseSensitivity === self::CASE_INSENSITIVE) {
             return self::includes(self::toLower($str), self::toLower($data), self::CASE_SENSITIVE);
         } else {
@@ -63,11 +60,8 @@ class S
     }
 
     // S::equals("aaa", "aaa") -> true
-    public static function equals(
-        string $str,
-        string $data,
-        $caseSensitivity = self::CASE_SENSITIVE
-    ): bool {
+    public static function equals(string $str, string $data, $caseSensitivity = self::CASE_SENSITIVE): bool
+    {
         if ($caseSensitivity === self::CASE_INSENSITIVE) {
             return self::toLower($str) === self::toLower($data);
         } else {

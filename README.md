@@ -101,11 +101,11 @@ Plain numeric arrays are handled best via the methods in A, while associative ar
 - **head** - returns the first element of an array, or null, if empty
 
   ```php
-  A::head([1, 2, 3]) // -> 1
+  A::head([1, 2, 3]) // 1
   ```
 
   ```php
-  A::head([]) // -> null
+  A::head([]) // null
   ```
 
 - **first** - alias for A::head()
@@ -113,23 +113,23 @@ Plain numeric arrays are handled best via the methods in A, while associative ar
 - **last** - returns the last element of an array, or null, if empty
 
   ```php
-  A::last([1, 2, 3, 4, 5]) // -> 5
+  A::last([1, 2, 3, 4, 5]) // 5
   ```
 
   ```php
-  A::last([]) // -> null
+  A::last([]) // null
   ```
 
 - **init** - returns a copy of a given array without the last element
 
   ```php
-  A::init([1, 2, 3, 4, 5]) // -> [1, 2, 3, 4]
+  A::init([1, 2, 3, 4, 5]) // [1, 2, 3, 4]
   ```
 
 - **tail** - returns a copy of a given array without the first element
 
   ```php
-  A::tail([1, 2, 3, 4, 5]) // -> [2, 3, 4, 5]
+  A::tail([1, 2, 3, 4, 5]) // [2, 3, 4, 5]
   ```
 
 - **filter** - calls the given function on the elements of an array and returns every value where the function gave truthy value
@@ -284,58 +284,155 @@ Plain numeric arrays are handled best via the methods in A, while associative ar
 
 ### String
 
-> Most string operations come with an optional 3rd parameter called $caseSensitivity, which can be either `S::CASE_SENSITIVE` (default) or `S::CASE_INSENSITIVE`.
+> Most string operations come with an optional 3rd parameter called $caseSensitivity,
+> which can be either `S::CASE_SENSITIVE` (default) or `S::CASE_INSENSITIVE`.
 
-- **isString** -
-- **length** -
-- **isEmpty** -
-- **isNotEmpty** -
-- **toLower** -
-- **toUpper** -
-- **includes** -
+> All string operations are multibyte safe!
+
+- **isString** - checks whether given argument is a string
+
+  ```php
+  S::isString('hello'); // true
+  ```
+
+  ```php
+  S::isString(['hello']); // false
+  ```
+
+  ```php
+  S::isString(304.2); // false
+  ```
+
+- **length** - counts the number of characters in the given parameter
+
+  ```php
+  S::length('őz'); // 2 -- strlen('őz') returns 3
+  ```
+
+- **isEmpty** - checks whether the given string has no characters
+
+  ```php
+  S::isEmpty(''); // true
+  ```
+
+  ```php
+  S::isEmpty('caterpillar'); // false
+  ```
+
+- **isNotEmpty** - checks whether the given string contains any characters
+
+  ```php
+  S::isNotEmpty(''); // false
+  ```
+
+  ```php
+  S::isNotEmpty('caterpillar'); // true
+  ```
+
+- **toLower** - converts every character in a string to lowercase
+
+  ```php
+  S::toLower('AsDf JkLÉ'); // "asdf jklé"
+  ```
+
+- **toUpper** - converts every character in a string to uppercase
+
+  ```php
+  S::toUpper('AsDf JkLÉ'); // "ASDF JKLÉ"
+  ```
+
+- **includes** - checks, if the string given as the 1st parameter is a substring of the 2nd parameter string
+
+  ```php
+  S::includes('erf', 'butterfly'); // true
+  ```
+
+  ```php
+  S::includes('ERF', 'butterfly', S::CASE_INSENSITIVE); // true
+  ```
+
+  ```php
+  S::includes('ERF', 'butterfly', S::CASE_SENSITIVE); // false
+  ```
+
+  ```php
+  S::includes('', 'butterfly'); // false -- edge case
+  ```
+
 - **split** - splits a string into multiple parts at points matching another string
 
   ```php
-  S::split("/", "foo/bar/baz") // -> ["foo", "bar", "baz"]
+  S::split("/", "foo/bar/baz") // ["foo", "bar", "baz"]
   ```
 
 - **splitAt** - splits a string into 2 at a given position
 
   ```php
-  S::splitAt(3, "abcdef") // -> ["abc", "def"]
+  S::splitAt(3, "abcdef") // ["abc", "def"]
   ```
 
-- **equals** -
-- **slice** -
-- **startsWith** -
+- **equals** - compares two strings together to see if they match
+
+  ```php
+  S::equals('asdf', 'asdf'); // true
+  ```
+
+  ```php
+  S::equals('asdf', 'ASDF', S::CASE_INSENSITIVE); // true
+  ```
+
+  ```php
+  S::equals('asdf', 'ASDF', S::CASE_SENSITIVE); // false
+  ```
+
+- **slice** - copies a substring between starting(inclusive) and ending(exclusive) positions
+
+  ```php
+  S::slice(2, 5, "abcdefgh"); // "cde"
+  ```
+
+  ```php
+  S::slice(-3, PHP_INT_MAX, "abcdefgh") // "fgh"
+  ```
+
+- **startsWith** - checks if the second parameter starts with the first
+
+  ```php
+  S::startsWith("inf", "infinity"); // true
+  ```
+
+  ```php
+  S::startsWith("inf", "iNFinItY", S::CASE_INSENSITIVE); // true
+  ```
+
+  ```php
+  S::startsWith("inf", "iNFinItY", S::CASE_SENSITIVE); // false
+  ```
+
 - **endsWith** - checks if the second parameter ends with the first
 
   ```php
-  S::endsWith("ed", "throwed"); // -> true
+  S::endsWith("ed", "throwed"); // true
   ```
 
   ```php
-  S::endsWith("ed", "cat"); // -> false
+  S::endsWith("ed", "tHRoWeD", S::CASE_SENSITIVE); // false
   ```
 
   ```php
-  S::endsWith("ED", "throwed", S::CASE_SENSITIVE); // -> false
-  ```
-
-  ```php
-  S::endsWith("Ed", "tHRoWeD", S::CASE_INSENSITIVE); // true
+  S::endsWith("ed", "tHRoWeD", S::CASE_INSENSITIVE); // true
   ```
 
 - **trim** - removes leading and trailing whitespaces from a string
 
   ```php
-  S::trim("  asd f     "); // -> "asd f"
+  S::trim("  asd f     "); // "asd f"
   ```
 
-- **replace** - replaces string with another
+- **replace** - replaces substring with another
 
   ```php
-  S::replace("a", "b", "appletini"); // -> "bppletini"
+  S::replace("a", "e", "alabama"); // "elebeme"
   ```
 
 ### Object
@@ -346,11 +443,11 @@ Plain numeric arrays are handled best via the methods in A, while associative ar
   $point = new stdClass();
   $point->x = 10;
   $point->y = 20;
-  O::isObject($point); // -> true
+  O::isObject($point); // true
   ```
 
   ```php
-  O::isObject("asdf"); // -> false
+  O::isObject("asdf"); // false
   ```
 
 - **toPairs** - gets all keys and values of an array or object and returns it as array of key-value pairs
@@ -359,7 +456,7 @@ Plain numeric arrays are handled best via the methods in A, while associative ar
   $point = new stdClass();
   $point->x = 10;
   $point->y = 20;
-  O::toPairs($point); // -> [["x", 10], ["y", 20]]
+  O::toPairs($point); // [["x", 10], ["y", 20]]
   ```
 
   ```php
@@ -367,12 +464,12 @@ Plain numeric arrays are handled best via the methods in A, while associative ar
     "firstName" => "John",
     "lastName" => "Doe"
   ];
-  O::toPairs($user); // -> [["firstName", "John"], ["lastName", "Doe"]]
+  O::toPairs($user); // [["firstName", "John"], ["lastName", "Doe"]]
   ```
 
   ```php
   $temperatures = [75, 44, 36];
-  O::toPairs($temperatures); // -> [[0, 75], [1, 44], [2, 36]]
+  O::toPairs($temperatures); // [[0, 75], [1, 44], [2, 36]]
   ```
 
 - **pick** -
