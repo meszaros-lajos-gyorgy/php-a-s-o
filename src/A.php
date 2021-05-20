@@ -265,7 +265,7 @@ class A
 
     public static function reject(callable $fn, array $data): array
     {
-        return self::filter(fn($value) => !$fn($value), $data);
+        return self::filter(F::complement($fn), $data);
     }
 
     // A::find(x => x.a > 3, [['a' => 8], ['a' => 10]]) -> ['a' => 8]
@@ -304,6 +304,18 @@ class A
     public static function any(callable $fn, array $data): bool
     {
         return self::find($fn, $data) !== null;
+    }
+
+    // A::none(x => x % 2 === 1, [0, 2, 4, 6]) -> true
+    public static function none(callable $fn, array $data): bool
+    {
+        return !self::any($fn, $data);
+    }
+
+    // A::all(x => x % 2 === 0, [0, 2, 4, 6]) -> true
+    public static function all(callable $fn, array $data): bool
+    {
+        return !self::any(F::complement($fn), $data);
     }
 
     // A::includes('baz', ['foo', 'bar', 'baz']) -> true

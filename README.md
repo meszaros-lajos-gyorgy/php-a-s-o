@@ -282,6 +282,9 @@ Plain numeric arrays are handled best via the methods in A, while associative ar
   // $result = true
   ```
 
+- **none** -
+- **all** -
+
 - **includes** -
 - **contains** -
 - **slice** -
@@ -528,6 +531,10 @@ Plain numeric arrays are handled best via the methods in A, while associative ar
 
 - **keys** -
 - **values** -
+
+### Functions
+
+- **complement** -
 
 ## Future plans
 
