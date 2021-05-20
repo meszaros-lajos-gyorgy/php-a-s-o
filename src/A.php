@@ -349,8 +349,20 @@ class A
     }
 
     // A::concat([1, 2], 3, [4, 5]) -> [1, 2, 3, 4, 5]
-    public static function concat(...$args): array {
-        return self::unnest(self::map(fn($arg) => self::ensureArray($arg),$args));
+    public static function concat(...$args): array
+    {
+        return self::reduce(
+            function ($acc, $arg) {
+                if (self::isArray($arg) && !self::isAssoc($arg)) {
+                    $acc = array_merge($arg, $acc);
+                } else {
+                    $acc[] = $arg;
+                }
+                return $acc;
+            },
+            [],
+            $args
+        );
     }
 
     // A::zipObj(['a', 'b'], [1, 2]) -> {a:1, b:2}
