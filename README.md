@@ -30,7 +30,7 @@ Plain numeric arrays are handled best via the methods in A, while associative ar
 
 ### Array
 
-- **of** - concatenates every argument into an array as is
+- **A::of** - concatenates every argument into an array as is
 
   _See also: A::concat()_
 
@@ -38,7 +38,7 @@ Plain numeric arrays are handled best via the methods in A, while associative ar
   $items = A::of(1, 2, [3]); // [1, 2, [3]]
   ```
 
-- **isArray** - checks whether the given parameter is an array (returns true for both numeric and associative)
+- **A::isArray** - checks whether the given parameter is an array (returns true for both numeric and associative)
 
   This uses the `is_array()` php function
 
@@ -62,7 +62,7 @@ Plain numeric arrays are handled best via the methods in A, while associative ar
   A::isArray(new stdClass()); // false
   ```
 
-- **isAssoc** - checks whether the given parameter is an associative array. empty arrays are treated as normal arrays and the function will return false for them
+- **A::isAssoc** - checks whether the given parameter is an associative array. empty arrays are treated as normal arrays and the function will return false for them
 
   The method is based on this solution: https://stackoverflow.com/a/173479/1806628
 
@@ -78,19 +78,19 @@ Plain numeric arrays are handled best via the methods in A, while associative ar
   A::isAssoc(["x" => 10, "y" => 20]); // true
   ```
 
-- **reduce** -
-- **reverse** -
-- **reduceRight** -
-- **sum** -
-- **map** -
-- **keys** -
-- **values** -
-- **equals** -
-- **length** -
-- **isEmpty** -
-- **isNotEmpty** -
+- **A::reduce** -
+- **A::reverse** -
+- **A::reduceRight** -
+- **A::sum** -
+- **A::map** -
+- **A::keys** -
+- **A::values** -
+- **A::equals** -
+- **A::length** -
+- **A::isEmpty** -
+- **A::isNotEmpty** -
 
-- **ensureArray** - wraps parameter into an array if it's not a numeric array
+- **A::ensureArray** - wraps parameter into an array if it's not a numeric array
 
   ```php
   A::ensureArray(123); // [123]
@@ -100,17 +100,17 @@ Plain numeric arrays are handled best via the methods in A, while associative ar
   A::ensureArray([4, 5, 6]); // [4, 5, 6]
   ```
 
-- **append** -
-- **prepend** -
-- **pluck** -
-- **uniq** -
-- **uniqByKey** -
-- **sortBy** -
-- **sortByKey** -
-- **unnest** -
-- **forEach** -
+- **A::append** -
+- **A::prepend** -
+- **A::pluck** -
+- **A::uniq** -
+- **A::uniqByKey** -
+- **A::sortBy** -
+- **A::sortByKey** -
+- **A::unnest** -
+- **A::forEach** -
 
-- **head** - returns the first element of an array, or null, if empty
+- **A::head** - returns the first element of an array, or null, if empty
 
   ```php
   A::head([1, 2, 3]) // 1
@@ -120,9 +120,9 @@ Plain numeric arrays are handled best via the methods in A, while associative ar
   A::head([]) // null
   ```
 
-- **first** - alias for A::head()
+- **A::first** - alias for A::head()
 
-- **last** - returns the last element of an array, or null, if empty
+- **A::last** - returns the last element of an array, or null, if empty
 
   ```php
   A::last([1, 2, 3, 4, 5]) // 5
@@ -132,19 +132,19 @@ Plain numeric arrays are handled best via the methods in A, while associative ar
   A::last([]) // null
   ```
 
-- **init** - returns a copy of a given array without the last element
+- **A::init** - returns a copy of a given array without the last element
 
   ```php
   A::init([1, 2, 3, 4, 5]) // [1, 2, 3, 4]
   ```
 
-- **tail** - returns a copy of a given array without the first element
+- **A::tail** - returns a copy of a given array without the first element
 
   ```php
   A::tail([1, 2, 3, 4, 5]) // [2, 3, 4, 5]
   ```
 
-- **filter** - calls the given function on the elements of an array and returns every value where the function gave truthy value
+- **A::filter** - calls the given function on the elements of an array and returns every value where the function gave truthy value
 
   ```php
   $numbers = [1, 2, 3, 4, 5, 6];
@@ -156,7 +156,7 @@ Plain numeric arrays are handled best via the methods in A, while associative ar
   A::filter('isOdd', $numbers); // [2, 4, 6]
   ```
 
-- **reject** - calls the given function on the elements of an array and removes every value where the function gave truthy value
+- **A::reject** - calls the given function on the elements of an array and removes every value where the function gave truthy value
 
   ```php
   $numbers = [1, 2, 3, 4, 5, 6];
@@ -168,7 +168,7 @@ Plain numeric arrays are handled best via the methods in A, while associative ar
   A::reject('isOdd', $numbers); // [1, 3, 5]
   ```
 
-- **find** - calls the given function on the elements of an array and returns the value for the first match. if there's no match, it will return `null`
+- **A::find** - calls the given function on the elements of an array and returns the value for the first match. if there's no match, it will return `null`
 
   ```php
   $data = [
@@ -194,7 +194,7 @@ Plain numeric arrays are handled best via the methods in A, while associative ar
   // $result = null
   ```
 
-- **findLast** - calls the given function on the elements of an array and returns the value for the last match. if there's no match, it will return `null`
+- **A::findLast** - calls the given function on the elements of an array and returns the value for the last match. if there's no match, it will return `null`
 
   ```php
   $data = [
@@ -220,7 +220,7 @@ Plain numeric arrays are handled best via the methods in A, while associative ar
   // $result = null
   ```
 
-- **findIndex** - calls the given function on the elements of an array and returns the key for the first match. if there's no match it will return `null`
+- **A::findIndex** - calls the given function on the elements of an array and returns the key for the first match. if there's no match it will return `null`
 
   ```php
   $data = [
@@ -246,7 +246,7 @@ Plain numeric arrays are handled best via the methods in A, while associative ar
   // $result = null
   ```
 
-- **findLastIndex** - calls the given function on the elements of an array and returns the key for the last match. if there's no match it will return `null`
+- **A::findLastIndex** - calls the given function on the elements of an array and returns the key for the last match. if there's no match it will return `null`
 
   ```php
   $data = [
@@ -272,7 +272,7 @@ Plain numeric arrays are handled best via the methods in A, while associative ar
   // $result = null
   ```
 
-- **any** - calls the given predicate function on the elements in the given array and returns true if for at least one of them the predicate returns true
+- **A::any** - calls the given predicate function on the elements in the given array and returns true if for at least one of them the predicate returns true
 
   ```php
   $data = [2, 3, 5, 6, 7, 9, 10];
@@ -282,17 +282,17 @@ Plain numeric arrays are handled best via the methods in A, while associative ar
   // $result = true
   ```
 
-- **none** -
-- **all** -
+- **A::none** -
+- **A::all** -
 
-- **includes** -
-- **contains** -
-- **slice** -
-- **join** -
+- **A::includes** -
+- **A::contains** -
+- **A::slice** -
+- **A::join** -
 
-- **pickRandom** - selects a random item from the given array
+- **A::pickRandom** - selects a random item from the given array
 
-- **concat** - concatenates every argument into an array. if any of the arguments are numeric arrays, then those will get unnested
+- **A::concat** - concatenates every argument into an array. if any of the arguments are numeric arrays, then those will get unnested
 
   _See also: A::of()_
 
@@ -300,7 +300,7 @@ Plain numeric arrays are handled best via the methods in A, while associative ar
   A::concat([1, 2], 3, [4, 5]); // [1, 2, 3, 4, 5]
   ```
 
-- **zipObj** -
+- **A::zipObj** -
 
 ### String
 
@@ -309,7 +309,7 @@ Plain numeric arrays are handled best via the methods in A, while associative ar
 
 > All string operations are multibyte safe!
 
-- **isString** - checks whether given argument is a string
+- **S::isString** - checks whether given argument is a string
 
   ```php
   S::isString('hello'); // true
@@ -323,13 +323,13 @@ Plain numeric arrays are handled best via the methods in A, while associative ar
   S::isString(304.2); // false
   ```
 
-- **length** - counts the number of characters in the given parameter
+- **S::length** - counts the number of characters in the given parameter
 
   ```php
   S::length('őz'); // 2 -- strlen('őz') returns 3
   ```
 
-- **isEmpty** - checks whether the given string has no characters
+- **S::isEmpty** - checks whether the given string has no characters
 
   ```php
   S::isEmpty(''); // true
@@ -339,7 +339,7 @@ Plain numeric arrays are handled best via the methods in A, while associative ar
   S::isEmpty('caterpillar'); // false
   ```
 
-- **isNotEmpty** - checks whether the given string contains any characters
+- **S::isNotEmpty** - checks whether the given string contains any characters
 
   ```php
   S::isNotEmpty(''); // false
@@ -349,19 +349,19 @@ Plain numeric arrays are handled best via the methods in A, while associative ar
   S::isNotEmpty('caterpillar'); // true
   ```
 
-- **toLower** - converts every character in a string to lowercase
+- **S::toLower** - converts every character in a string to lowercase
 
   ```php
   S::toLower('AsDf JkLÉ'); // "asdf jklé"
   ```
 
-- **toUpper** - converts every character in a string to uppercase
+- **S::toUpper** - converts every character in a string to uppercase
 
   ```php
   S::toUpper('AsDf JkLÉ'); // "ASDF JKLÉ"
   ```
 
-- **includes** - checks, if the string given as the 1st parameter is a substring of the 2nd parameter string
+- **S::includes** - checks, if the string given as the 1st parameter is a substring of the 2nd parameter string
 
   ```php
   S::includes('erf', 'butterfly'); // true
@@ -379,21 +379,21 @@ Plain numeric arrays are handled best via the methods in A, while associative ar
   S::includes('', 'butterfly'); // false -- edge case
   ```
 
-- **contains** - alias for S::includes()
+- **S::contains** - alias for S::includes()
 
-- **split** - splits a string into multiple parts at points matching another string
+- **S::split** - splits a string into multiple parts at points matching another string
 
   ```php
   S::split("/", "foo/bar/baz") // ["foo", "bar", "baz"]
   ```
 
-- **splitAt** - splits a string into 2 at a given position
+- **S::splitAt** - splits a string into 2 at a given position
 
   ```php
   S::splitAt(3, "abcdef") // ["abc", "def"]
   ```
 
-- **equals** - compares two strings together to see if they match
+- **S::equals** - compares two strings together to see if they match
 
   ```php
   S::equals('asdf', 'asdf'); // true
@@ -407,7 +407,7 @@ Plain numeric arrays are handled best via the methods in A, while associative ar
   S::equals('asdf', 'ASDF', S::CASE_SENSITIVE); // false
   ```
 
-- **slice** - copies a substring between starting(inclusive) and ending(exclusive) positions
+- **S::slice** - copies a substring between starting(inclusive) and ending(exclusive) positions
 
   ```php
   S::slice(2, 5, "abcdefgh"); // "cde"
@@ -417,7 +417,7 @@ Plain numeric arrays are handled best via the methods in A, while associative ar
   S::slice(-3, PHP_INT_MAX, "abcdefgh") // "fgh"
   ```
 
-- **startsWith** - checks if the second parameter starts with the first
+- **S::startsWith** - checks if the second parameter starts with the first
 
   ```php
   S::startsWith("inf", "infinity"); // true
@@ -431,7 +431,7 @@ Plain numeric arrays are handled best via the methods in A, while associative ar
   S::startsWith("inf", "iNFinItY", S::CASE_SENSITIVE); // false
   ```
 
-- **endsWith** - checks if the second parameter ends with the first
+- **S::endsWith** - checks if the second parameter ends with the first
 
   ```php
   S::endsWith("ed", "throwed"); // true
@@ -445,13 +445,13 @@ Plain numeric arrays are handled best via the methods in A, while associative ar
   S::endsWith("ed", "tHRoWeD", S::CASE_INSENSITIVE); // true
   ```
 
-- **trim** - removes leading and trailing whitespaces from a string
+- **S::trim** - removes leading and trailing whitespaces from a string
 
   ```php
   S::trim("  asd f     "); // "asd f"
   ```
 
-- **replace** - replaces substring with another
+- **S::replace** - replaces substring with another
 
   ```php
   S::replace("a", "e", "alabama"); // "elebeme"
@@ -459,7 +459,7 @@ Plain numeric arrays are handled best via the methods in A, while associative ar
 
 ### Object
 
-- **isObject** - check whether the passed in argument is an object
+- **O::isObject** - check whether the passed in argument is an object
 
   ```php
   $point = new stdClass();
@@ -472,7 +472,7 @@ Plain numeric arrays are handled best via the methods in A, while associative ar
   O::isObject("asdf"); // false
   ```
 
-- **toPairs** - gets all keys and values of an array or object and returns it as array of key-value pairs
+- **O::toPairs** - gets all keys and values of an array or object and returns it as array of key-value pairs
 
   ```php
   $point = new stdClass();
@@ -494,9 +494,9 @@ Plain numeric arrays are handled best via the methods in A, while associative ar
   O::toPairs($temperatures); // [[0, 75], [1, 44], [2, 36]]
   ```
 
-- **pick** -
+- **O::pick** -
 
-- **assoc** - assigns value to an object via a given key. already existing keys will get overwritten
+- **O::assoc** - assigns value to an object via a given key. already existing keys will get overwritten
 
   ```php
   $point2d = new stdClass();
@@ -506,7 +506,7 @@ Plain numeric arrays are handled best via the methods in A, while associative ar
   $point3d = O::assoc("z", 30, $point2d); // {"x": 10, "y": 20, "z": 30}
   ```
 
-- **dissoc** - removes a key from an object
+- **O::dissoc** - removes a key from an object
 
   ```php
   $point3d = new stdClass();
@@ -517,7 +517,7 @@ Plain numeric arrays are handled best via the methods in A, while associative ar
   $point2d = O::dissoc("z", 30, $point3d); // {"x": 10, "y": 20}
   ```
 
-- **has** - checks presence of a key inside an object and an associative array
+- **O::has** - checks presence of a key inside an object and an associative array
 
   uses `array_key_exists()` internally
 
@@ -529,12 +529,12 @@ Plain numeric arrays are handled best via the methods in A, while associative ar
   O::has('y', $data); // false
   ```
 
-- **keys** -
-- **values** -
+- **O::keys** -
+- **O::values** -
 
 ### Functions
 
-- **complement** -
+- **F::complement** -
 
 ## Future plans
 
