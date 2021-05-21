@@ -12,17 +12,80 @@ composer require mlg/shovel
 
 Every method is abide to the following rules ( or at least they should. if they don't, then 1) PRs are welcome, 2) Issues are welcome ):
 
-- **stateless** - each method should get all the necessary info from the parameters and should not rely on any external parameters or state
-- **static** - since every method is stateless, there is no need to create class instances
-- **pure** - not using anything apart from the passed in parameters
-- **immutable** - not going to change any of the parameters, no & references or stuff like that
-- **the last parameter should be the input data you are working on...** - like in Lodash FP or Ramda
-- **except if the argument list has optional parameters!** - suggestions are welcome on where to place optional parameters
-- **not doing any validation on the parameters** - if you are using a method from `A`, then you better be sending it an array. PHP is a loosely typed language and you could spend all day validating input parameters.
-- **not casting any of the input parameters** - it's the same as for the validation, you should check the data you pass to the function beforehand
-- **does only a single, well defined thing** - small is beautiful, and maintainable - and probably easier to test later on when I'll get the willpower to write tests for this lib
-- **null return values on error** - when an error happens and the underlying php function returns false (eg. end or strpos), then it's being normalized to null
-- **camelCase naming**
+<details>
+  <summary>stateless</summary>
+  
+  each method should get all the necessary info from the parameters and should not rely on any external parameters or state
+
+</details>
+
+<details>
+  <summary>static</summary>
+  
+  since every method is stateless, there is no need to create class instances
+
+</details>
+
+<details>
+  <summary>pure</summary>
+  
+  not using anything apart from the passed in parameters
+
+</details>
+
+<details>
+  <summary>immutable</summary>
+  
+  not going to change any of the parameters, no & references or stuff like that
+
+</details>
+
+<details>
+  <summary>the last parameter should be the input data you are working on...</summary>
+  
+  like in Lodash FP or Ramda
+
+</details>
+
+<details>
+  <summary>except if the argument list has optional parameters!</summary>
+  
+  suggestions are welcome on where to place optional parameters
+
+</details>
+
+<details>
+  <summary>not doing any validation on the parameters</summary>
+  
+  if you are using a method from `A`, then you better be sending it an array. PHP is a loosely typed language and you could spend all day validating input parameters.
+
+</details>
+
+<details>
+  <summary>not casting any of the input parameters</summary>
+  
+  it's the same as for the validation, you should check the data you pass to the function beforehand
+
+</details>
+
+<details>
+  <summary>does only a single, well defined thing</summary>
+  
+  small is beautiful, and maintainable - and probably easier to test later on when I'll get the willpower to write tests for this lib
+
+</details>
+
+<details>
+  <summary>null return values on error</summary>
+  
+  when an error happens and the underlying php function returns false (eg. end or strpos), then it's being normalized to null
+
+</details>
+
+<details>
+  <summary>camelCase naming</summary>
+
+</details>
 
 Plain numeric arrays are handled best via the methods in A, while associative arrays and objects are handled via the methods in O.
 
@@ -70,245 +133,428 @@ A::isArray(new stdClass()); // false
 
 </details>
 
-- **A::isAssoc** - checks whether the given parameter is an associative array. empty arrays are treated as normal arrays and the function will return false for them
+<details>
+  <summary>A::isAssoc</summary>
+  
+  #### checks whether the given parameter is an associative array. empty arrays are treated as normal arrays and the function will return false for them
+
+The method is based on this solution: https://stackoverflow.com/a/173479/1806628
+
+```php
+A::isAssoc([]); // false
+```
+
+```php
+A::isAssoc([1, 2, 3]); // false;
+```
+
+```php
+A::isAssoc(["x" => 10, "y" => 20]); // true
+```
+
+</details>
+
+<details>
+  <summary>A::reduce</summary>
+
+</details>
+
+<details>
+  <summary>A::reverse</summary>
+  
+</details>
+
+<details>
+  <summary>A::reduceRight</summary>
+  
+</details>
+
+<details>
+  <summary>A::sum</summary>
+  
+</details>
+
+<details>
+  <summary>A::map</summary>
+  
+</details>
+
+<details>
+  <summary>A::keys</summary>
+  
+</details>
+
+<details>
+  <summary>A::values</summary>
+  
+</details>
+
+<details>
+  <summary>A::equals</summary>
+
+</details>
+  
+<details>
+  <summary>A::length</summary>
+  
+</details>
+
+<details>
+  <summary>A::isEmpty</summary>
+  
+</details>
+
+<details>
+  <summary>A::isNotEmpty</summary>
+
+</details>
+
+<details>
+  <summary>A::ensureArray</summary>
+  
+  #### wraps parameter into an array if it's not a numeric array
+
+```php
+A::ensureArray(123); // [123]
+```
 
-  The method is based on this solution: https://stackoverflow.com/a/173479/1806628
+```php
+A::ensureArray([4, 5, 6]); // [4, 5, 6]
+```
+
+</details>
+
+<details>
+  <summary>A::append</summary>
+  
+</details>
 
-  ```php
-  A::isAssoc([]); // false
-  ```
+<details>
+  <summary>A::prepend</summary>
+  
+</details>
 
-  ```php
-  A::isAssoc([1, 2, 3]); // false;
-  ```
+<details>
+  <summary>A::pluck</summary>
+  
+</details>
 
-  ```php
-  A::isAssoc(["x" => 10, "y" => 20]); // true
-  ```
+<details>
+  <summary>A::uniq</summary>
+  
+</details>
 
-- **A::reduce** -
-- **A::reverse** -
-- **A::reduceRight** -
-- **A::sum** -
-- **A::map** -
-- **A::keys** -
-- **A::values** -
-- **A::equals** -
-- **A::length** -
-- **A::isEmpty** -
-- **A::isNotEmpty** -
+<details>
+  <summary>A::uniqByKey</summary>
+  
+</details>
 
-- **A::ensureArray** - wraps parameter into an array if it's not a numeric array
+<details>
+  <summary>A::sortBy</summary>
+  
+</details>
 
-  ```php
-  A::ensureArray(123); // [123]
-  ```
+<details>
+  <summary>A::sortByKey</summary>
+  
+</details>
 
-  ```php
-  A::ensureArray([4, 5, 6]); // [4, 5, 6]
-  ```
+<details>
+  <summary>A::unnest</summary>
+  
+</details>
 
-- **A::append** -
-- **A::prepend** -
-- **A::pluck** -
-- **A::uniq** -
-- **A::uniqByKey** -
-- **A::sortBy** -
-- **A::sortByKey** -
-- **A::unnest** -
-- **A::forEach** -
+<details>
+  <summary>A::forEach</summary>
 
-- **A::head** - returns the first element of an array, or null, if empty
+</details>
 
-  ```php
-  A::head([1, 2, 3]) // 1
-  ```
+<details>
+  <summary>A::head</summary>
+  
+  #### returns the first element of an array, or null, if empty
 
-  ```php
-  A::head([]) // null
-  ```
+```php
+A::head([1, 2, 3]) // 1
+```
 
-- **A::first** - alias for A::head()
+```php
+A::head([]) // null
+```
 
-- **A::last** - returns the last element of an array, or null, if empty
+</details>
 
-  ```php
-  A::last([1, 2, 3, 4, 5]) // 5
-  ```
+<details>
+  <summary>A::first</summary>
+  
+  #### alias for A::head()
 
-  ```php
-  A::last([]) // null
-  ```
+</details>
 
-- **A::init** - returns a copy of a given array without the last element
+<details>
+  <summary>A::last</summary>
+  
+  #### returns the last element of an array, or null, if empty
 
-  ```php
-  A::init([1, 2, 3, 4, 5]) // [1, 2, 3, 4]
-  ```
+```php
+A::last([1, 2, 3, 4, 5]) // 5
+```
 
-- **A::tail** - returns a copy of a given array without the first element
+```php
+A::last([]) // null
+```
 
-  ```php
-  A::tail([1, 2, 3, 4, 5]) // [2, 3, 4, 5]
-  ```
+</details>
 
-- **A::filter** - calls the given function on the elements of an array and returns every value where the function gave truthy value
+<details>
+  <summary>A::init</summary>
+  
+  #### returns a copy of a given array without the last element
 
-  ```php
-  $numbers = [1, 2, 3, 4, 5, 6];
+```php
+A::init([1, 2, 3, 4, 5]) // [1, 2, 3, 4]
+```
 
-  function isOdd($n){
-    return $n % 2 === 0;
-  }
+</details>
 
-  A::filter('isOdd', $numbers); // [2, 4, 6]
-  ```
+<details>
+  <summary>A::tail</summary>
+  
+  #### returns a copy of a given array without the first element
 
-- **A::reject** - calls the given function on the elements of an array and removes every value where the function gave truthy value
+```php
+A::tail([1, 2, 3, 4, 5]) // [2, 3, 4, 5]
+```
 
-  ```php
-  $numbers = [1, 2, 3, 4, 5, 6];
+</details>
 
-  function isOdd($n){
-    return $n % 2 === 0;
-  }
+<details>
+  <summary>A::filter</summary>
+  
+  #### calls the given function on the elements of an array and returns every value where the function gave truthy value
 
-  A::reject('isOdd', $numbers); // [1, 3, 5]
-  ```
+```php
+$numbers = [1, 2, 3, 4, 5, 6];
 
-- **A::find** - calls the given function on the elements of an array and returns the value for the first match. if there's no match, it will return `null`
+function isOdd($n){
+  return $n % 2 === 0;
+}
 
-  ```php
-  $data = [
-    ["a" => 8],
-    ["a" => 10],
-    ["a" => 12]
-  ];
+A::filter('isOdd', $numbers); // [2, 4, 6]
+```
 
-  $result = A::find(fn($x) => $x["a"] > 3, $data);
+</details>
 
-  // $result = ["a" => 8]
-  ```
+<details>
+  <summary>A::reject</summary>
+  
+  #### calls the given function on the elements of an array and removes every value where the function gave truthy value
 
-  ```php
-  $data = [
-    ["a" => 8],
-    ["a" => 10],
-    ["a" => 12]
-  ];
+```php
+$numbers = [1, 2, 3, 4, 5, 6];
 
-  $result = A::find(fn($x) => $x["a"] === -4, $data);
+function isOdd($n){
+  return $n % 2 === 0;
+}
 
-  // $result = null
-  ```
+A::reject('isOdd', $numbers); // [1, 3, 5]
+```
 
-- **A::findLast** - calls the given function on the elements of an array and returns the value for the last match. if there's no match, it will return `null`
+</details>
 
-  ```php
-  $data = [
-    ["a" => 8],
-    ["a" => 10],
-    ["a" => 12]
-  ];
+<details>
+  <summary>A::find</summary>
+  
+  #### calls the given function on the elements of an array and returns the value for the first match. if there's no match, it will return `null`
 
-  $result = A::findLast(fn($x) => $x["a"] > 3, $data);
+```php
+$data = [
+  ["a" => 8],
+  ["a" => 10],
+  ["a" => 12]
+];
 
-  // $result = ["a" => 12]
-  ```
+$result = A::find(fn($x) => $x["a"] > 3, $data);
 
-  ```php
-  $data = [
-    ["a" => 8],
-    ["a" => 10],
-    ["a" => 12]
-  ];
+// $result = ["a" => 8]
+```
 
-  $result = A::findLast(fn($x) => $x["a"] === -4, $data);
+```php
+$data = [
+  ["a" => 8],
+  ["a" => 10],
+  ["a" => 12]
+];
 
-  // $result = null
-  ```
+$result = A::find(fn($x) => $x["a"] === -4, $data);
 
-- **A::findIndex** - calls the given function on the elements of an array and returns the key for the first match. if there's no match it will return `null`
+// $result = null
+```
 
-  ```php
-  $data = [
-    ["a" => 8],
-    ["a" => 10],
-    ["a" => 12]
-  ];
+</details>
 
-  $result = A::findIndex(fn($x) => $x["a"] === 10, $data);
+<details>
+  <summary>A::findLast</summary>
+  
+  #### calls the given function on the elements of an array and returns the value for the last match. if there's no match, it will return `null`
 
-  // $result = 1
-  ```
+```php
+$data = [
+  ["a" => 8],
+  ["a" => 10],
+  ["a" => 12]
+];
 
-  ```php
-  $data = [
-    ["a" => 8],
-    ["a" => 10],
-    ["a" => 12]
-  ];
+$result = A::findLast(fn($x) => $x["a"] > 3, $data);
 
-  $result = A::findIndex(fn($x) => $x["a"] === -4, $data);
+// $result = ["a" => 12]
+```
 
-  // $result = null
-  ```
+```php
+$data = [
+  ["a" => 8],
+  ["a" => 10],
+  ["a" => 12]
+];
 
-- **A::findLastIndex** - calls the given function on the elements of an array and returns the key for the last match. if there's no match it will return `null`
+$result = A::findLast(fn($x) => $x["a"] === -4, $data);
 
-  ```php
-  $data = [
-    ["a" => 8],
-    ["a" => 10],
-    ["a" => 12]
-  ];
+// $result = null
+```
 
-  $result = A::findLastIndex(fn($x) => $x["a"] > 3, $data);
+</details>
 
-  // $result = 2
-  ```
+<details>
+  <summary>A::findIndex</summary>
+  
+  #### calls the given function on the elements of an array and returns the key for the first match. if there's no match it will return `null`
 
-  ```php
-  $data = [
-    ["a" => 8],
-    ["a" => 10],
-    ["a" => 12]
-  ];
+```php
+$data = [
+  ["a" => 8],
+  ["a" => 10],
+  ["a" => 12]
+];
 
-  $result = A::findLastIndex(fn($x) => $x["a"] > 500, $data);
+$result = A::findIndex(fn($x) => $x["a"] === 10, $data);
 
-  // $result = null
-  ```
+// $result = 1
+```
 
-- **A::any** - calls the given predicate function on the elements in the given array and returns true if for at least one of them the predicate returns true
+```php
+$data = [
+  ["a" => 8],
+  ["a" => 10],
+  ["a" => 12]
+];
 
-  ```php
-  $data = [2, 3, 5, 6, 7, 9, 10];
+$result = A::findIndex(fn($x) => $x["a"] === -4, $data);
 
-  $result = A::any(fn($x) => $x % 5 === 0, $data);
+// $result = null
+```
 
-  // $result = true
-  ```
+</details>
 
-- **A::none** -
-- **A::all** -
+<details>
+  <summary>A::findLastIndex</summary>
+  
+  #### calls the given function on the elements of an array and returns the key for the last match. if there's no match it will return `null`
 
-- **A::includes** -
-- **A::contains** -
-- **A::slice** -
-- **A::join** -
+```php
+$data = [
+  ["a" => 8],
+  ["a" => 10],
+  ["a" => 12]
+];
 
-- **A::pickRandom** - selects a random item from the given array
+$result = A::findLastIndex(fn($x) => $x["a"] > 3, $data);
 
-- **A::concat** - concatenates every argument into an array. if any of the arguments are numeric arrays, then those will get unnested
+// $result = 2
+```
 
-  _See also: A::of()_
+```php
+$data = [
+  ["a" => 8],
+  ["a" => 10],
+  ["a" => 12]
+];
 
-  ```php
-  A::concat([1, 2], 3, [4, 5]); // [1, 2, 3, 4, 5]
-  ```
+$result = A::findLastIndex(fn($x) => $x["a"] > 500, $data);
 
-- **A::zipObj** -
+// $result = null
+```
+
+</details>
+
+<details>
+  <summary>A::any</summary>
+  
+  #### calls the given predicate function on the elements in the given array and returns true if for at least one of them the predicate returns true
+
+```php
+$data = [2, 3, 5, 6, 7, 9, 10];
+
+$result = A::any(fn($x) => $x % 5 === 0, $data);
+
+// $result = true
+```
+
+</details>
+
+<details>
+  <summary>A::none</summary>
+
+</details>
+
+<details>
+  <summary>A::all</summary>
+
+</details>
+
+<details>
+  <summary>A::includes</summary>
+  
+</details>
+
+<details>
+  <summary>A::contains</summary>
+  
+</details>
+
+<details>
+  <summary>A::slice</summary>
+
+</details>
+
+<details>
+  <summary>A::join</summary>
+
+</details>
+
+<details>
+  <summary>A::pickRandom</summary>
+  
+  #### selects a random item from the given array
+
+</details>
+
+<details>
+  <summary>A::concat</summary>
+  
+  #### concatenates every argument into an array. if any of the arguments are numeric arrays, then those will get unnested
+
+_See also: A::of()_
+
+```php
+A::concat([1, 2], 3, [4, 5]); // [1, 2, 3, 4, 5]
+```
+
+</details>
+
+<details>
+  <summary>A::zipObj</summary>
+
+</details>
 
 ### String
 
@@ -317,232 +563,350 @@ A::isArray(new stdClass()); // false
 
 > All string operations are multibyte safe!
 
-- **S::isString** - checks whether given argument is a string
+<details>
+  <summary>S::isString</summary>
+  
+  #### checks whether given argument is a string
 
-  ```php
-  S::isString('hello'); // true
-  ```
+```php
+S::isString('hello'); // true
+```
 
-  ```php
-  S::isString(['hello']); // false
-  ```
+```php
+S::isString(['hello']); // false
+```
 
-  ```php
-  S::isString(304.2); // false
-  ```
+```php
+S::isString(304.2); // false
+```
 
-- **S::length** - counts the number of characters in the given parameter
+</details>
 
-  ```php
-  S::length('őz'); // 2 -- strlen('őz') returns 3
-  ```
+<details>
+  <summary>S::length</summary>
+  
+  #### counts the number of characters in the given parameter
 
-- **S::isEmpty** - checks whether the given string has no characters
+```php
+S::length('őz'); // 2 -- strlen('őz') returns 3
+```
 
-  ```php
-  S::isEmpty(''); // true
-  ```
+</details>
 
-  ```php
-  S::isEmpty('caterpillar'); // false
-  ```
+<details>
+  <summary>S::isEmpty</summary>
+  
+  #### checks whether the given string has no characters
 
-- **S::isNotEmpty** - checks whether the given string contains any characters
+```php
+S::isEmpty(''); // true
+```
 
-  ```php
-  S::isNotEmpty(''); // false
-  ```
+```php
+S::isEmpty('caterpillar'); // false
+```
 
-  ```php
-  S::isNotEmpty('caterpillar'); // true
-  ```
+</details>
 
-- **S::toLower** - converts every character in a string to lowercase
+<details>
+  <summary>S::isNotEmpty</summary>
+  
+  #### checks whether the given string contains any characters
 
-  ```php
-  S::toLower('AsDf JkLÉ'); // "asdf jklé"
-  ```
+```php
+S::isNotEmpty(''); // false
+```
 
-- **S::toUpper** - converts every character in a string to uppercase
+```php
+S::isNotEmpty('caterpillar'); // true
+```
 
-  ```php
-  S::toUpper('AsDf JkLÉ'); // "ASDF JKLÉ"
-  ```
+</details>
 
-- **S::includes** - checks, if the string given as the 1st parameter is a substring of the 2nd parameter string
+<details>
+  <summary>S::toLower</summary>
+  
+  #### converts every character in a string to lowercase
 
-  ```php
-  S::includes('erf', 'butterfly'); // true
-  ```
+```php
+S::toLower('AsDf JkLÉ'); // "asdf jklé"
+```
 
-  ```php
-  S::includes('ERF', 'butterfly', S::CASE_INSENSITIVE); // true
-  ```
+</details>
 
-  ```php
-  S::includes('ERF', 'butterfly', S::CASE_SENSITIVE); // false
-  ```
+<details>
+  <summary>S::toUpper</summary>
+  
+  #### converts every character in a string to uppercase
 
-  ```php
-  S::includes('', 'butterfly'); // false -- edge case
-  ```
+```php
+S::toUpper('AsDf JkLÉ'); // "ASDF JKLÉ"
+```
 
-- **S::contains** - alias for S::includes()
+</details>
 
-- **S::split** - splits a string into multiple parts at points matching another string
+<details>
+  <summary>S::includes</summary>
+  
+  #### checks, if the string given as the 1st parameter is a substring of the 2nd parameter string
 
-  ```php
-  S::split("/", "foo/bar/baz") // ["foo", "bar", "baz"]
-  ```
+```php
+S::includes('erf', 'butterfly'); // true
+```
 
-- **S::splitAt** - splits a string into 2 at a given position
+```php
+S::includes('ERF', 'butterfly', S::CASE_INSENSITIVE); // true
+```
 
-  ```php
-  S::splitAt(3, "abcdef") // ["abc", "def"]
-  ```
+```php
+S::includes('ERF', 'butterfly', S::CASE_SENSITIVE); // false
+```
 
-- **S::equals** - compares two strings together to see if they match
+```php
+S::includes('', 'butterfly'); // false -- edge case
+```
 
-  ```php
-  S::equals('asdf', 'asdf'); // true
-  ```
+</details>
 
-  ```php
-  S::equals('asdf', 'ASDF', S::CASE_INSENSITIVE); // true
-  ```
+<details>
+  <summary>S::contains</summary>
+  
+  #### alias for S::includes()
 
-  ```php
-  S::equals('asdf', 'ASDF', S::CASE_SENSITIVE); // false
-  ```
+</details>
 
-- **S::slice** - copies a substring between starting(inclusive) and ending(exclusive) positions
+<details>
+  <summary>S::split</summary>
+  
+  #### splits a string into multiple parts at points matching another string
 
-  ```php
-  S::slice(2, 5, "abcdefgh"); // "cde"
-  ```
+```php
+S::split("/", "foo/bar/baz") // ["foo", "bar", "baz"]
+```
 
-  ```php
-  S::slice(-3, PHP_INT_MAX, "abcdefgh") // "fgh"
-  ```
+</details>
 
-- **S::startsWith** - checks if the second parameter starts with the first
+<details>
+  <summary>S::splitAt</summary>
+  
+  #### splits a string into 2 at a given position
 
-  ```php
-  S::startsWith("inf", "infinity"); // true
-  ```
+```php
+S::splitAt(3, "abcdef") // ["abc", "def"]
+```
 
-  ```php
-  S::startsWith("inf", "iNFinItY", S::CASE_INSENSITIVE); // true
-  ```
+</details>
 
-  ```php
-  S::startsWith("inf", "iNFinItY", S::CASE_SENSITIVE); // false
-  ```
+<details>
+  <summary>S::equals</summary>
+  
+  #### compares two strings together to see if they match
 
-- **S::endsWith** - checks if the second parameter ends with the first
+```php
+S::equals('asdf', 'asdf'); // true
+```
 
-  ```php
-  S::endsWith("ed", "throwed"); // true
-  ```
+```php
+S::equals('asdf', 'ASDF', S::CASE_INSENSITIVE); // true
+```
 
-  ```php
-  S::endsWith("ed", "tHRoWeD", S::CASE_SENSITIVE); // false
-  ```
+```php
+S::equals('asdf', 'ASDF', S::CASE_SENSITIVE); // false
+```
 
-  ```php
-  S::endsWith("ed", "tHRoWeD", S::CASE_INSENSITIVE); // true
-  ```
+</details>
 
-- **S::trim** - removes leading and trailing whitespaces from a string
+<details>
+  <summary>S::slice</summary>
+  
+  #### copies a substring between starting(inclusive) and ending(exclusive) positions
 
-  ```php
-  S::trim("  asd f     "); // "asd f"
-  ```
+```php
+S::slice(2, 5, "abcdefgh"); // "cde"
+```
 
-- **S::replace** - replaces substring with another
+```php
+S::slice(-3, PHP_INT_MAX, "abcdefgh") // "fgh"
+```
 
-  ```php
-  S::replace("a", "e", "alabama"); // "elebeme"
-  ```
+</details>
+
+<details>
+  <summary>S::startsWith</summary>
+  
+  #### checks if the second parameter starts with the first
+
+```php
+S::startsWith("inf", "infinity"); // true
+```
+
+```php
+S::startsWith("inf", "iNFinItY", S::CASE_INSENSITIVE); // true
+```
+
+```php
+S::startsWith("inf", "iNFinItY", S::CASE_SENSITIVE); // false
+```
+
+</details>
+
+<details>
+  <summary>S::endsWith</summary>
+  
+  #### checks if the second parameter ends with the first
+
+```php
+S::endsWith("ed", "throwed"); // true
+```
+
+```php
+S::endsWith("ed", "tHRoWeD", S::CASE_SENSITIVE); // false
+```
+
+```php
+S::endsWith("ed", "tHRoWeD", S::CASE_INSENSITIVE); // true
+```
+
+</details>
+
+<details>
+  <summary>S::trim</summary>
+  
+  #### removes leading and trailing whitespaces from a string
+
+```php
+S::trim("  asd f     "); // "asd f"
+```
+
+</details>
+
+<details>
+  <summary>S::replace</summary>
+  
+  #### replaces substring with another
+
+```php
+S::replace("a", "e", "alabama"); // "elebeme"
+```
+
+</details>
 
 ### Object
 
-- **O::isObject** - check whether the passed in argument is an object
+<details>
+  <summary>O::isObject</summary>
+  
+  #### check whether the passed in argument is an object
 
-  ```php
-  $point = new stdClass();
-  $point->x = 10;
-  $point->y = 20;
-  O::isObject($point); // true
-  ```
+```php
+$point = new stdClass();
+$point->x = 10;
+$point->y = 20;
+O::isObject($point); // true
+```
 
-  ```php
-  O::isObject("asdf"); // false
-  ```
+```php
+O::isObject("asdf"); // false
+```
 
-- **O::toPairs** - gets all keys and values of an array or object and returns it as array of key-value pairs
+</details>
 
-  ```php
-  $point = new stdClass();
-  $point->x = 10;
-  $point->y = 20;
-  O::toPairs($point); // [["x", 10], ["y", 20]]
-  ```
+<details>
+  <summary>O::toPairs</summary>
+  
+  #### gets all keys and values of an array or object and returns it as array of key-value pairs
 
-  ```php
-  $user = [
-    "firstName" => "John",
-    "lastName" => "Doe"
-  ];
-  O::toPairs($user); // [["firstName", "John"], ["lastName", "Doe"]]
-  ```
+```php
+$point = new stdClass();
+$point->x = 10;
+$point->y = 20;
+O::toPairs($point); // [["x", 10], ["y", 20]]
+```
 
-  ```php
-  $temperatures = [75, 44, 36];
-  O::toPairs($temperatures); // [[0, 75], [1, 44], [2, 36]]
-  ```
+```php
+$user = [
+  "firstName" => "John",
+  "lastName" => "Doe"
+];
+O::toPairs($user); // [["firstName", "John"], ["lastName", "Doe"]]
+```
 
-- **O::pick** -
+```php
+$temperatures = [75, 44, 36];
+O::toPairs($temperatures); // [[0, 75], [1, 44], [2, 36]]
+```
 
-- **O::assoc** - assigns value to an object via a given key. already existing keys will get overwritten
+</details>
 
-  ```php
-  $point2d = new stdClass();
-  $point2d->x = 10;
-  $point2d->y = 20;
+<details>
+  <summary>O::pick</summary>
 
-  $point3d = O::assoc("z", 30, $point2d); // {"x": 10, "y": 20, "z": 30}
-  ```
+</details>
 
-- **O::dissoc** - removes a key from an object
+<details>
+  <summary>O::assoc</summary>
+  
+  #### assigns value to an object via a given key. already existing keys will get overwritten
 
-  ```php
-  $point3d = new stdClass();
-  $point3d->x = 10;
-  $point3d->y = 20;
-  $point3d->z = 30;
+```php
+$point2d = new stdClass();
+$point2d->x = 10;
+$point2d->y = 20;
 
-  $point2d = O::dissoc("z", 30, $point3d); // {"x": 10, "y": 20}
-  ```
+$point3d = O::assoc("z", 30, $point2d); // {"x": 10, "y": 20, "z": 30}
+```
 
-- **O::has** - checks presence of a key inside an object and an associative array
+</details>
 
-  uses `array_key_exists()` internally
+<details>
+  <summary>O::dissoc</summary>
+  
+  #### removes a key from an object
 
-  ```php
-  $data = new stdClass();
-  $data->x = 10;
+```php
+$point3d = new stdClass();
+$point3d->x = 10;
+$point3d->y = 20;
+$point3d->z = 30;
 
-  O::has('x', $data); // true
-  O::has('y', $data); // false
-  ```
+$point2d = O::dissoc("z", 30, $point3d); // {"x": 10, "y": 20}
+```
 
-- **O::keys** -
-- **O::values** -
+</details>
+
+<details>
+  <summary>O::has</summary>
+  
+  #### checks presence of a key inside an object and an associative array
+
+uses `array_key_exists()` internally
+
+```php
+$data = new stdClass();
+$data->x = 10;
+
+O::has('x', $data); // true
+O::has('y', $data); // false
+```
+
+</details>
+
+<details>
+  <summary>O::keys</summary>
+
+</details>
+
+<details>
+  <summary>O::values</summary>
+
+</details>
 
 ### Functions
 
-- **F::complement** -
+<details>
+  <summary>F::complement</summary>
+
+</details>
 
 ## Future plans
 
