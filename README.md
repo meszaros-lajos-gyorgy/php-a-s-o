@@ -30,37 +30,45 @@ Plain numeric arrays are handled best via the methods in A, while associative ar
 
 ### Array
 
-- **A::of** - concatenates every argument into an array as is
+<details>
+  <summary>A::of</summary>
 
-  _See also: A::concat()_
+#### Concatenates every argument into an array as is
 
-  ```php
-  $items = A::of(1, 2, [3]); // [1, 2, [3]]
-  ```
+_See also: A::concat()_
 
-- **A::isArray** - checks whether the given parameter is an array (returns true for both numeric and associative)
+```php
+$items = A::of(1, 2, [3]); // [1, 2, [3]]
+```
 
-  This uses the `is_array()` php function
+</details>
 
-  ```php
-  A::isArray([1, 2, 3]); // true
-  ```
+<details>
+  <summary>A::isArray</summary>
 
-  ```php
-  A::isArray(["a" => 10]); // true
-  ```
+#### checks whether the given parameter is an array (returns true for both numeric and associative)
 
-  ```php
-  A::isArray("asdf"); // false
-  ```
+```php
+A::isArray([1, 2, 3]); // true
+```
 
-  ```php
-  A::isArray(50); // false
-  ```
+```php
+A::isArray(["a" => 10]); // true
+```
 
-  ```php
-  A::isArray(new stdClass()); // false
-  ```
+```php
+A::isArray("asdf"); // false
+```
+
+```php
+A::isArray(50); // false
+```
+
+```php
+A::isArray(new stdClass()); // false
+```
+
+</details>
 
 - **A::isAssoc** - checks whether the given parameter is an associative array. empty arrays are treated as normal arrays and the function will return false for them
 
