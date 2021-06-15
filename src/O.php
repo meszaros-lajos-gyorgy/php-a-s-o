@@ -82,4 +82,15 @@ class O
         }
         return [];
     }
+
+    // O::prop('x', ['x' => 10]) -> 10
+    public static function prop($key, $data) {
+        if (self::isObject($data)) {
+            return self::has($key, $data) ? $data->{$key} : null;
+        }
+        if (A::isArray($data) && A::isAssoc($data)) {
+            return self::has($key, $data) ? $data[$key] : null;
+        }
+        return null;
+    }
 }

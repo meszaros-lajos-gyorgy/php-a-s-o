@@ -889,6 +889,13 @@ O::has('x', $data); // true
 O::has('y', $data); // false
 ```
 
+```php
+$data = ['x' => 10];
+
+O::has('x', $data); // true
+O::has('y', $data); // false
+```
+
 </details>
 
 <details>
@@ -898,6 +905,28 @@ O::has('y', $data); // false
 
 <details>
   <summary>O::values</summary>
+
+</details>
+
+<details>
+  <summary>O::prop</summary>
+
+#### Reads the given value for the given key from objects and associative arrays. If not found, then returns null.
+
+```php
+$data = new stdClass();
+$data->x = 10;
+
+O::prop('x', $data); // 10
+O::prop('y', $data); // null
+```
+
+```php
+$data = ['x' => 10];
+
+O::prop('x', $data); // 10
+O::prop('y', $data); // null
+```
 
 </details>
 
