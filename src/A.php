@@ -163,35 +163,23 @@ class A
         switch ($type) {
             case 'string':
                 if ($direction === 'desc') {
-                    $sorter = function ($a, $b) use ($key) {
-                        return strcasecmp($b[$key], $a[$key]);
-                    };
+                    $sorter = fn ($a, $b) => strcasecmp(O::prop($key, $b), O::prop($key, $a));
                 } else {
-                    $sorter = function ($a, $b) use ($key) {
-                        return strcasecmp($a[$key], $b[$key]);
-                    };
+                    $sorter = fn ($a, $b) => strcasecmp(O::prop($key, $a), O::prop($key, $b));
                 }
                 break;
             case 'date':
                 if ($direction === 'desc') {
-                    $sorter = function ($a, $b) use ($key) {
-                        return strtotime($b[$key]) - strtotime($a[$key]);
-                    };
+                    $sorter = fn ($a, $b) => strtotime(O::prop($key, $b)) - strtotime(O::prop($key, $a));
                 } else {
-                    $sorter = function ($a, $b) use ($key) {
-                        return strtotime($a[$key]) - strtotime($b[$key]);
-                    };
+                    $sorter = fn ($a, $b) => strtotime(O::prop($key, $a)) - strtotime(O::prop($key, $b));
                 }
                 break;
             default:
                 if ($direction === 'desc') {
-                    $sorter = function ($a, $b) use ($key) {
-                        return $b[$key] - $a[$key];
-                    };
+                    $sorter = fn ($a, $b) => O::prop($key, $b) - O::prop($key, $a);
                 } else {
-                    $sorter = function ($a, $b) use ($key) {
-                        return $a[$key] - $b[$key];
-                    };
+                    $sorter = fn ($a, $b) => O::prop($key, $a) - O::prop($key, $b);
                 }
                 break;
         }
