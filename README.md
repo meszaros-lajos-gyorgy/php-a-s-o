@@ -172,6 +172,12 @@ A::isAssoc(["x" => 10, "y" => 20]); // true
 <details>
   <summary>A::sum</summary>
   
+  #### adds up the numbers in the given array and returns the sum
+
+```php
+A::sum([1, 2, 3, 4, 5]); // 15
+```
+
 </details>
 
 <details>
@@ -553,6 +559,25 @@ A::concat([1, 2], 3, [4, 5]); // [1, 2, 3, 4, 5]
 
 <details>
   <summary>A::zipObj</summary>
+
+</details>
+
+<details>
+  <summary>A::without</summary>
+  
+  #### removes items from the second array by values in the first array. if first value is not an array, then it is transformed into one
+
+```php
+A::without([1, 3], [1, 2, 3, 4, 5]); // [2, 4, 5]
+```
+
+```php
+A::without(['a' => 12], [1, 2, 3, 4, ['a' => 12]]); // [1, 2, 3, 4]
+```
+
+```php
+A::without(['t'], ['t', 'f', 'f', 't', 'f']); // ['f', 'f', 'f']
+```
 
 </details>
 

@@ -65,7 +65,7 @@ class A
         return array_keys($data);
     }
 
-    // A::values([3, 6, 7]) -> [3, 6, 7]
+    // A::values([1 => 3, 3 => 6, 4 => 7]) -> [3, 6, 7]
     public static function values(array $data): array
     {
         return array_values($data);
@@ -358,5 +358,17 @@ class A
         $_keys = self::uniq(self::concat(self::keys($keys), self::keys($values)));
         $_keys = self::filter(fn($key) => array_key_exists($key, $keys) && array_key_exists($key, $values), $_keys);
         return self::reduce(fn($result, $key) => O::assoc($keys[$key], $values[$key], $result), new stdClass(), $_keys);
+    }
+
+    // A::without([1, 3], [1, 2, 3, 4, 5]) -> [2, 4, 5]
+    public static function without($excludedItems, array $values): array {
+        return self::values(self::reduce(function($values, $excludedItem) {
+            if (self::includes($excludedItem, $values)) {
+                $index = self::findIndex(fn($value) => $value === $excludedItem, $values);
+                unset($values[$index]);
+            }
+
+            return $values;
+        }, $values, self::ensureArray($excludedItems)));
     }
 }
