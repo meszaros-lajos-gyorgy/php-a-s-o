@@ -436,25 +436,17 @@ $result = A::findLast(fn($x) => $x["a"] === -4, $data);
   #### calls the given function on the elements of an array and returns the key for the first match. if there's no match it will return `null`
 
 ```php
-$data = [
-  ["a" => 8],
-  ["a" => 10],
-  ["a" => 12]
-];
+$data = [1, 1, 1, 0, 0, 0, 0, 0];
 
-$result = A::findIndex(fn($x) => $x["a"] === 10, $data);
+$result = A::findIndex(fn($x) => $x === 0, $data);
 
-// $result = 1
+// $result = 3
 ```
 
 ```php
-$data = [
-  ["a" => 8],
-  ["a" => 10],
-  ["a" => 12]
-];
+$data = [1, 1, 1, 0, 0, 0, 0, 0];
 
-$result = A::findIndex(fn($x) => $x["a"] === -4, $data);
+$result = A::findIndex(fn($x) => $x === 2, $data);
 
 // $result = null
 ```
@@ -467,25 +459,17 @@ $result = A::findIndex(fn($x) => $x["a"] === -4, $data);
   #### calls the given function on the elements of an array and returns the key for the last match. if there's no match it will return `null`
 
 ```php
-$data = [
-  ["a" => 8],
-  ["a" => 10],
-  ["a" => 12]
-];
+$data = [1, 1, 1, 0, 0, 0, 0, 0];
 
-$result = A::findLastIndex(fn($x) => $x["a"] > 3, $data);
+$result = A::findLastIndex(fn($x) => $x === 1, $data);
 
 // $result = 2
 ```
 
 ```php
-$data = [
-  ["a" => 8],
-  ["a" => 10],
-  ["a" => 12]
-];
+$data = [1, 1, 1, 0, 0, 0, 0, 0];
 
-$result = A::findLastIndex(fn($x) => $x["a"] > 500, $data);
+$result = A::findLastIndex(fn($x) => $x === 2, $data);
 
 // $result = null
 ```

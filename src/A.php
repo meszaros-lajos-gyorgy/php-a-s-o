@@ -267,7 +267,7 @@ class A
         return self::find($fn, self::reverse($data));
     }
 
-    // A::findIndex(x => x.a === 10, [['a' => 8], ['a' => 10]]) -> 1
+    // A::findIndex(x => x === 1, [1, 1, 1, 0, 0, 0, 0, 0]) -> 3
     public static function findIndex(callable $fn, array $data): ?int {
         if (self::isEmpty($data)) {
             return null;
@@ -282,10 +282,12 @@ class A
         return null;
     }
 
-    // A::findLastIndex(x => x.a > 3, [['a' => 8], ['a' => 10]]) -> 1
+    // A::findLastIndex(x => x === 1, [1, 1, 1, 0, 0, 0, 0, 0]) -> 2
     public static function findLastIndex(callable $fn, array $data): ?int
     {
-        return self::findIndex($fn, self::reverse($data));
+        $size = A::length($data);
+        $idx = self::findIndex($fn, self::reverse($data));
+        return $idx === null ? null : $size - $idx - 1;
     }
 
     // A::any(x => x.a === 10, [['a' => 8], ['a' => 10]]) -> true
