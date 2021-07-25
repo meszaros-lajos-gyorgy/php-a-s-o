@@ -108,13 +108,13 @@ class A
     // A::append([4, 5, 6], [1, 2]) -> [1, 2, 4, 5, 6]
     public static function append($value, array $data): array
     {
-        return self::concat($data, $value);
+        return self::concat($value, $data);
     }
 
     // A::prepend([4, 5, 6], [1, 2]) -> [4, 5, 6, 1, 2]
     public static function prepend($value, array $data): array
     {
-        return self::concat($value, $data);
+        return self::concat($data, $value);
     }
 
     // A::pluck('color', [['color' => 'red', ...], ['color' => 'green', ...]]) -> ['red', 'green']
