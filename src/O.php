@@ -30,12 +30,12 @@ class O
     }
 
     // $coord = {x:10, y:20, z:30}; O::pick(['x', 'y'], $coord) -> {x:10, y:20}
-    public static function pick(array $keys, object $data): object
+    public static function pick(array $keys, $data): object
     {
         return A::reduce(
             function ($result, $key) use ($data) {
-                if (isset($data->{$key})) {
-                    $result->{$key} = $data->{$key};
+                if (self::has($key, $data)) {
+                    $result->{$key} = self::prop($key, $data);
                 }
                 return $result;
             },
