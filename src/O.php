@@ -58,7 +58,15 @@ class O
 
     // O::has('x', {x:10, y:20}) -> true
     public static function has(string $key, $data): bool {
-        return array_key_exists($key, $data);
+        if (self::isObject($data)) {
+            return property_exists($data, $key);
+        }
+
+        if (A::isArray($data) && A::isAssoc($data)) {
+            return array_key_exists($key, $data);
+        }
+
+        return false;
     }
 
     // O::keys(['a' => 1, 'b' => 2]) -> ['a', 'b']
@@ -86,10 +94,10 @@ class O
     // O::prop('x', ['x' => 10]) -> 10
     public static function prop($key, $data) {
         if (self::isObject($data)) {
-            return self::has($key, $data) ? $data->{$key} : null;
+            return $data->{$key} ?? null;
         }
         if (A::isArray($data) && A::isAssoc($data)) {
-            return self::has($key, $data) ? $data[$key] : null;
+            return $data[$key] ?? null;
         }
         return null;
     }
