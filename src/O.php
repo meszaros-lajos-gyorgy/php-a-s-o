@@ -45,7 +45,8 @@ class O
     }
 
     // O::assoc('foo', 'bar', {}) -> {foo: 'bar'}
-    public static function assoc(string $key, $value, $data): object {
+    public static function assoc(string $key, $value, $data)
+    {
         if (self::isObject($data)) {
             $data->{$key} = $value;
         }
@@ -58,7 +59,8 @@ class O
     }
 
     // O::dissoc('foo', {foo: 'bar', fizz: 'buzz'}) -> {fizz: 'buzz'}
-    public static function dissoc(string $key, $data): object {
+    public static function dissoc(string $key, $data)
+    {
         if (self::isObject($data)) {
             unset($data->{$key});
         }
