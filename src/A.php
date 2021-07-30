@@ -335,7 +335,33 @@ class A
     // A::pickRandom([1, 2, 3, 4, 5]) -> 3
     public static function pickRandom(array $data)
     {
+        if (self::isEmpty($data)) {
+            return null;
+        }
+
         return $data[rand(0, self::length($data) - 1)];
+    }
+
+    // A::pickRandoms(2, [1, 2, 3, 4, 5]) -> [5, 2]
+    public static function pickRandoms(int $amount = 1, array $data): array
+    {
+        if (self::isEmpty($data) || $amount <= 0) {
+            return [];
+        }
+
+        if ($amount > self::length($data)) {
+            $amount = self::length($data);
+        }
+
+        $remaining = $data;
+        $selected = [];
+        for ($i = 0; $i < $amount; $i++) {
+            $randomItem = self::pickRandom($remaining, 1);
+            $remaining = self::without($randomItem, $remaining);
+            $selected[] = $randomItem;
+        }
+
+        return $selected;
     }
 
     // A::concat([1, 2], 3, [4, 5]) -> [1, 2, 3, 4, 5]
