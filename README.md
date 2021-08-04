@@ -514,6 +514,8 @@ $result = A::any(fn($x) => $x % 5 === 0, $data);
 <details>
   <summary>A::slice</summary>
 
+#### Returns the elements of the given list from fromIndex (inclusive) to toIndex (exclusive)
+
 </details>
 
 <details>

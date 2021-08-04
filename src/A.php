@@ -242,7 +242,7 @@ class A
 
     // A::init([1, 2, 3]) -> [1, 2]
     public static function init(array $data): array {
-        return self::slice(0, -1, $data);
+        return self::slice(0, self::length($data) - 1, $data);
     }
 
     // A::filter(x => x % 2 == 0, [1, 2, 3, 4, 5]) -> [2, 4]
@@ -323,7 +323,7 @@ class A
     // A::slice(2, 4, [1, 2, 3, 4, 5]) -> [3, 4, 5]
     public static function slice(int $fromIndex, int $toIndex, array $data): array
     {
-        return array_slice($data, $fromIndex, $toIndex);
+        return array_slice($data, $fromIndex, $toIndex - $fromIndex);
     }
 
     // A::join('-', ['a', 'b', 'c']) -> 'a-b-c'
