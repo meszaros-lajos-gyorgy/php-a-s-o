@@ -9,7 +9,7 @@ class O
     // O::isObject(new stdClass()) -> true
     public static function isObject($data): bool
     {
-        return is_object($data);
+        return $data !== null && is_object($data);
     }
 
     // O::toPairs(['a' => 1, 'b' => 2]) -> [['a', 1], ['b', 2]]
@@ -58,16 +58,50 @@ class O
         return $data;
     }
 
-    // O::assocPath(['foo', 'bar'], 12, {}) -> {foo: {bar: 12}}
-    function assocPath($path, $value, $data) {
-        $tmp = &$data;
-        
+    public static function pathOr($path, $defaultValue, $data)
+    {
+        $tmp = $data;
+
         for ($i = 0; $i < count($path); $i++) {
-            $tmp = &$tmp[$path[$i]];
+            $key = $path[$i];
+            if (!self::isObject($tmp) && !A::isArray($tmp)) {
+                return $defaultValue;
+            }
+
+            if (self::isObject($tmp) || A::isAssoc($tmp)) {
+                if (!self::has($key, $tmp)) {
+                    return $defaultValue;
+                } else {
+                    $tmp = self::prop($key, $tmp);
+                }
+            } else {
+                if (!isset($tmp[$key])) {
+                    return $defaultValue;
+                } else {
+                    $tmp = $tmp[$key];
+                }
+            }
         }
-        
+
+        return $tmp;
+    }
+
+    // O::assocPath(['foo', 'bar'], 12, {}) -> {foo: {bar: 12}}
+    public static function assocPath($path, $value, &$data)
+    {
+        $tmp = &$data;
+
+        for ($i = 0; $i < count($path); $i++) {
+            $key = $path[$i];
+            if (self::isObject($tmp)) {
+                $tmp = &$tmp->{$key};
+            } elseif (A::isArray($tmp)) {
+                $tmp = &$tmp[$key];
+            }
+        }
+
         $tmp = $value;
-        
+
         return $data;
     }
 
@@ -86,7 +120,8 @@ class O
     }
 
     // O::has('x', {x:10, y:20}) -> true
-    public static function has(string $key, $data): bool {
+    public static function has(string $key, $data): bool
+    {
         if (self::isObject($data)) {
             return property_exists($data, $key);
         }
@@ -99,7 +134,8 @@ class O
     }
 
     // O::keys(['a' => 1, 'b' => 2]) -> ['a', 'b']
-    public static function keys($data): array {
+    public static function keys($data): array
+    {
         if (self::isObject($data)) {
             return A::keys(get_object_vars($data));
         }
@@ -110,7 +146,8 @@ class O
     }
 
     // O::values(['a' => 1, 'b' => 2]) -> [1, 2]
-    public static function values($data): array {
+    public static function values($data): array
+    {
         if (self::isObject($data)) {
             return A::values(get_object_vars($data));
         }
@@ -121,7 +158,8 @@ class O
     }
 
     // O::prop('x', ['x' => 10]) -> 10
-    public static function prop($key, $data) {
+    public static function prop($key, $data)
+    {
         if (self::isObject($data)) {
             return $data->{$key} ?? null;
         }
