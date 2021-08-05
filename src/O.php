@@ -58,6 +58,19 @@ class O
         return $data;
     }
 
+    // O::assocPath(['foo', 'bar'], 12, {}) -> {foo: {bar: 12}}
+    function assocPath($path, $value, $data) {
+        $tmp = &$data;
+        
+        for ($i = 0; $i < count($path); $i++) {
+            $tmp = &$tmp[$path[$i]];
+        }
+        
+        $tmp = $value;
+        
+        return $data;
+    }
+
     // O::dissoc('foo', {foo: 'bar', fizz: 'buzz'}) -> {fizz: 'buzz'}
     public static function dissoc(string $key, $data)
     {
