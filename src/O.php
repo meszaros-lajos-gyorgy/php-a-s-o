@@ -87,7 +87,7 @@ class O
     }
 
     // O::assocPath(['foo', 'bar'], 12, {}) -> {foo: {bar: 12}}
-    public static function assocPath($path, $value, &$data)
+    public static function assocPath($path, $value, $data)
     {
         $tmp = &$data;
 
