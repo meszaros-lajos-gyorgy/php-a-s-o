@@ -120,7 +120,9 @@ class A
     // A::pluck('color', [['color' => 'red', ...], ['color' => 'green', ...]]) -> ['red', 'green']
     public static function pluck($key, array $data): array
     {
-        return array_column($data, $key);
+        return self::map(function ($entry) use ($key) {
+            return O::prop($key, $entry);
+        }, $data);
     }
 
     // A::uniq([1, 2, 2, 3, 3, 3]) -> [1, 2, 3]
@@ -236,12 +238,14 @@ class A
     }
 
     // A::tail([1, 2, 3]) -> [2, 3]
-    public static function tail(array $data): array {
+    public static function tail(array $data): array
+    {
         return self::slice(1, PHP_INT_MAX, $data);
     }
 
     // A::init([1, 2, 3]) -> [1, 2]
-    public static function init(array $data): array {
+    public static function init(array $data): array
+    {
         return self::slice(0, self::length($data) - 1, $data);
     }
 
@@ -263,12 +267,14 @@ class A
     }
 
     // A::findLast(x => x.a > 3, [['a' => 8], ['a' => 10]]) -> ['a' => 10]
-    public static function findLast(callable $fn, array $data) {
+    public static function findLast(callable $fn, array $data)
+    {
         return self::find($fn, self::reverse($data));
     }
 
     // A::findIndex(x => x === 1, [1, 1, 1, 0, 0, 0, 0, 0]) -> 3
-    public static function findIndex(callable $fn, array $data): ?int {
+    public static function findIndex(callable $fn, array $data): ?int
+    {
         if (self::isEmpty($data)) {
             return null;
         }
@@ -382,17 +388,19 @@ class A
     }
 
     // A::zipObj(['a', 'b'], [1, 2]) -> {a:1, b:2}
-    public static function zipObj(array $keys, array $values): object {
+    public static function zipObj(array $keys, array $values): object
+    {
         $_keys = self::uniq(self::concat(self::keys($keys), self::keys($values)));
-        $_keys = self::filter(fn($key) => array_key_exists($key, $keys) && array_key_exists($key, $values), $_keys);
-        return self::reduce(fn($result, $key) => O::assoc($keys[$key], $values[$key], $result), new stdClass(), $_keys);
+        $_keys = self::filter(fn ($key) => array_key_exists($key, $keys) && array_key_exists($key, $values), $_keys);
+        return self::reduce(fn ($result, $key) => O::assoc($keys[$key], $values[$key], $result), new stdClass(), $_keys);
     }
 
     // A::without([1, 3], [1, 2, 3, 4, 5]) -> [2, 4, 5]
-    public static function without($excludedItems, array $values): array {
-        return self::values(self::reduce(function($values, $excludedItem) {
+    public static function without($excludedItems, array $values): array
+    {
+        return self::values(self::reduce(function ($values, $excludedItem) {
             if (self::includes($excludedItem, $values)) {
-                $index = self::findIndex(fn($value) => $value === $excludedItem, $values);
+                $index = self::findIndex(fn ($value) => $value === $excludedItem, $values);
                 unset($values[$index]);
             }
 
