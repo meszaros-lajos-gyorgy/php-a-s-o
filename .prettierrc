@@ -1,0 +1,9 @@
+{
+  "printWidth": 120,
+  "phpVersion": "7.2",
+  "trailingCommaPHP": false,
+  "trailingComma": "none",
+  "semi": false,
+  "singleQuote": true,
+  "endOfLine": "lf"
+}
