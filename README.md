@@ -257,6 +257,8 @@ A::head([]) // null
 
 #### alias for A::head()
 
+_See also: [A::head()](#ahead)_
+
 ### A::last
 
 #### returns the last element of an array, or null, if empty
@@ -562,6 +564,8 @@ S::includes('', 'butterfly'); // false -- edge case
 
 #### alias for S::includes()
 
+_See also: [S::includes](#sincludes)_
+
 ### S::split
 
 #### splits a string into multiple parts at points matching another string
@@ -792,6 +796,16 @@ O::prop('y', $data); // null
 ## Functions
 
 ### F::complement
+
+#### Wraps the passed in function in a way that when called it inverts it's returning value
+
+```php
+function isOdd(int $n):boolean {
+  return $n % 2 === 1;
+}
+
+$isEven = F::complement(isOdd);
+```
 
 ---
 
