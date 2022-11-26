@@ -2,10 +2,31 @@
 
 A PHP library for manipulating Arrays, Strings and Objects - inspired by [ramda.js](https://ramdajs.com/)
 
+## Requirements
+
+PHP 7.2
+
 ## Install
 
-```
+```sh
 composer require mlg/shovel
+```
+
+## Example
+
+```php
+<?php
+
+use Shovel\A;
+use Shovel\S;
+
+$fruits = ['banana', 'raspberry', 'orange', 'strawberry', 'apple', 'blueberry'];
+
+$berries = A::filter(function($fruit) {
+  return S::endsWith('berry', $fruit);
+}, $fruits);
+
+print_r($berries); // ['raspberry', 'strawberry', 'blueberry']
 ```
 
 ## Concepts
