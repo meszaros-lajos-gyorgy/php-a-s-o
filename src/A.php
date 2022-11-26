@@ -165,23 +165,35 @@ class A
         switch ($type) {
             case 'string':
                 if ($direction === 'desc') {
-                    $sorter = fn ($a, $b) => strcasecmp(O::prop($key, $b), O::prop($key, $a));
+                    $sorter = function ($a, $b) use ($key) {
+                        return strcasecmp(O::prop($key, $b), O::prop($key, $a));
+                    };
                 } else {
-                    $sorter = fn ($a, $b) => strcasecmp(O::prop($key, $a), O::prop($key, $b));
+                    $sorter = function ($a, $b) use ($key) {
+                        return strcasecmp(O::prop($key, $a), O::prop($key, $b));
+                    };
                 }
                 break;
             case 'date':
                 if ($direction === 'desc') {
-                    $sorter = fn ($a, $b) => strtotime(O::prop($key, $b)) - strtotime(O::prop($key, $a));
+                    $sorter = function ($a, $b) use ($key) {
+                        return strtotime(O::prop($key, $b)) - strtotime(O::prop($key, $a));
+                    };
                 } else {
-                    $sorter = fn ($a, $b) => strtotime(O::prop($key, $a)) - strtotime(O::prop($key, $b));
+                    $sorter = function ($a, $b) use ($key) {
+                        return strtotime(O::prop($key, $a)) - strtotime(O::prop($key, $b));
+                    };
                 }
                 break;
             default:
                 if ($direction === 'desc') {
-                    $sorter = fn ($a, $b) => O::prop($key, $b) - O::prop($key, $a);
+                    $sorter = function ($a, $b) use ($key) {
+                        return O::prop($key, $b) - O::prop($key, $a);
+                    };
                 } else {
-                    $sorter = fn ($a, $b) => O::prop($key, $a) - O::prop($key, $b);
+                    $sorter = function ($a, $b) use ($key) {
+                        return O::prop($key, $a) - O::prop($key, $b);
+                    };
                 }
                 break;
         }
@@ -391,8 +403,12 @@ class A
     public static function zipObj(array $keys, array $values): object
     {
         $_keys = self::uniq(self::concat(self::keys($keys), self::keys($values)));
-        $_keys = self::filter(fn ($key) => array_key_exists($key, $keys) && array_key_exists($key, $values), $_keys);
-        return self::reduce(fn ($result, $key) => O::assoc($keys[$key], $values[$key], $result), new stdClass(), $_keys);
+        $_keys = self::filter(function ($key) use ($keys, $values) {
+            return array_key_exists($key, $keys) && array_key_exists($key, $values);
+        }, $_keys);
+        return self::reduce(function ($result, $key) use ($keys, $values) {
+            return O::assoc($keys[$key], $values[$key], $result);
+        }, new stdClass(), $_keys);
     }
 
     // A::without([1, 3], [1, 2, 3, 4, 5]) -> [2, 4, 5]
@@ -400,7 +416,9 @@ class A
     {
         return self::values(self::reduce(function ($values, $excludedItem) {
             if (self::includes($excludedItem, $values)) {
-                $index = self::findIndex(fn ($value) => $value === $excludedItem, $values);
+                $index = self::findIndex(function ($value) use ($excludedItem) {
+                    return $value === $excludedItem;
+                }, $values);
                 unset($values[$index]);
             }
 
