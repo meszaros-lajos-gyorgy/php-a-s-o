@@ -12,89 +12,55 @@ composer require mlg/shovel
 
 Every method is abide to the following rules ( or at least they should. if they don't, then 1) PRs are welcome, 2) Issues are welcome ):
 
-<details>
-  <summary>stateless</summary>
-  
-  each method should get all the necessary info from the parameters and should not rely on any external parameters or state
+### stateless
 
-</details>
+each method should get all the necessary info from the parameters and should not rely on any external parameters or state
 
-<details>
-  <summary>static</summary>
-  
-  since every method is stateless, there is no need to create class instances
+### static
 
-</details>
+since every method is stateless, there is no need to create class instances
 
-<details>
-  <summary>pure</summary>
-  
-  not using anything apart from the passed in parameters
+### pure
 
-</details>
+not using anything apart from the passed in parameters
 
-<details>
-  <summary>immutable</summary>
-  
-  not going to change any of the parameters, no & references or stuff like that
+### immutable
 
-</details>
+not going to change any of the parameters, no & references or stuff like that
 
-<details>
-  <summary>the last parameter should be the input data you are working on...</summary>
-  
-  like in Lodash FP or Ramda
+### the last parameter should be the input data you are working on...
 
-</details>
+like in Lodash FP or Ramda
 
-<details>
-  <summary>except if the argument list has optional parameters!</summary>
-  
-  suggestions are welcome on where to place optional parameters
+### except if the argument list has optional parameters!
 
-</details>
+suggestions are welcome on where to place optional parameters
 
-<details>
-  <summary>not doing any validation on the parameters</summary>
-  
-  if you are using a method from `A`, then you better be sending it an array. PHP is a loosely typed language and you could spend all day validating input parameters.
+### not doing any validation on the parameters
 
-</details>
+if you are using a method from `A`, then you better be sending it an array. PHP is a loosely typed language and you could spend all day validating input parameters.
 
-<details>
-  <summary>not casting any of the input parameters</summary>
-  
-  it's the same as for the validation, you should check the data you pass to the function beforehand
+### not casting any of the input parameters
 
-</details>
+it's the same as for the validation, you should check the data you pass to the function beforehand
 
-<details>
-  <summary>does only a single, well defined thing</summary>
-  
-  small is beautiful, and maintainable - and probably easier to test later on when I'll get the willpower to write tests for this lib
+### does only a single, well defined thing
 
-</details>
+small is beautiful, and maintainable - and probably easier to test later on when I'll get the willpower to write tests for this lib
 
-<details>
-  <summary>null return values on error</summary>
-  
-  when an error happens and the underlying php function returns false (eg. end or strpos), then it's being normalized to null
+### null return values on error
 
-</details>
+when an error happens and the underlying php function returns false (eg. end or strpos), then it's being normalized to null
 
-<details>
-  <summary>camelCase naming</summary>
-
-</details>
+### camelCase naming
 
 Plain numeric arrays are handled best via the methods in A, while associative arrays and objects are handled via the methods in O.
 
-## API
+# API
 
-### Array
+## Array
 
-<details>
-  <summary>A::of</summary>
+### A::of
 
 #### Concatenates every argument into an array as is
 
@@ -104,10 +70,7 @@ _See also: A::concat()_
 $items = A::of(1, 2, [3]); // [1, 2, [3]]
 ```
 
-</details>
-
-<details>
-  <summary>A::isArray</summary>
+### A::isArray
 
 #### checks whether the given parameter is an array (returns true for both numeric and associative)
 
@@ -131,12 +94,9 @@ A::isArray(50); // false
 A::isArray(new stdClass()); // false
 ```
 
-</details>
+### A::isAssoc
 
-<details>
-  <summary>A::isAssoc</summary>
-  
-  #### checks whether the given parameter is an associative array. empty arrays are treated as normal arrays and the function will return false for them
+#### checks whether the given parameter is an associative array. empty arrays are treated as normal arrays and the function will return false for them
 
 The method is based on this solution: https://stackoverflow.com/a/173479/1806628
 
@@ -152,73 +112,37 @@ A::isAssoc([1, 2, 3]); // false;
 A::isAssoc(["x" => 10, "y" => 20]); // true
 ```
 
-</details>
+### A::reduce
 
-<details>
-  <summary>A::reduce</summary>
+### A::reverse
 
-</details>
+### A::reduceRight
 
-<details>
-  <summary>A::reverse</summary>
-  
-</details>
+### A::sum
 
-<details>
-  <summary>A::reduceRight</summary>
-  
-</details>
-
-<details>
-  <summary>A::sum</summary>
-  
-  #### adds up the numbers in the given array and returns the sum
+#### adds up the numbers in the given array and returns the sum
 
 ```php
 A::sum([1, 2, 3, 4, 5]); // 15
 ```
 
-</details>
+### A::map
 
-<details>
-  <summary>A::map</summary>
-  
-</details>
+### A::keys
 
-<details>
-  <summary>A::keys</summary>
-  
-</details>
+### A::values
 
-<details>
-  <summary>A::values</summary>
-  
-</details>
+### A::equals
 
-<details>
-  <summary>A::equals</summary>
+### A::length
 
-</details>
-  
-<details>
-  <summary>A::length</summary>
-  
-</details>
+### A::isEmpty
 
-<details>
-  <summary>A::isEmpty</summary>
-  
-</details>
+### A::isNotEmpty
 
-<details>
-  <summary>A::isNotEmpty</summary>
+### A::ensureArray
 
-</details>
-
-<details>
-  <summary>A::ensureArray</summary>
-  
-  #### wraps parameter into an array if it's not a numeric array
+#### wraps parameter into an array if it's not a numeric array
 
 ```php
 A::ensureArray(123); // [123]
@@ -228,57 +152,27 @@ A::ensureArray(123); // [123]
 A::ensureArray([4, 5, 6]); // [4, 5, 6]
 ```
 
-</details>
+### A::append
 
-<details>
-  <summary>A::append</summary>
-  
-</details>
+### A::prepend
 
-<details>
-  <summary>A::prepend</summary>
-  
-</details>
+### A::pluck
 
-<details>
-  <summary>A::pluck</summary>
-  
-</details>
+### A::uniq
 
-<details>
-  <summary>A::uniq</summary>
-  
-</details>
+### A::uniqByKey
 
-<details>
-  <summary>A::uniqByKey</summary>
-  
-</details>
+### A::sortBy
 
-<details>
-  <summary>A::sortBy</summary>
-  
-</details>
+### A::sortByKey
 
-<details>
-  <summary>A::sortByKey</summary>
-  
-</details>
+### A::unnest
 
-<details>
-  <summary>A::unnest</summary>
-  
-</details>
+### A::forEach
 
-<details>
-  <summary>A::forEach</summary>
+### A::head
 
-</details>
-
-<details>
-  <summary>A::head</summary>
-  
-  #### returns the first element of an array, or null, if empty
+#### returns the first element of an array, or null, if empty
 
 ```php
 A::head([1, 2, 3]) // 1
@@ -288,19 +182,13 @@ A::head([1, 2, 3]) // 1
 A::head([]) // null
 ```
 
-</details>
+### A::first
 
-<details>
-  <summary>A::first</summary>
-  
-  #### alias for A::head()
+#### alias for A::head()
 
-</details>
+### A::last
 
-<details>
-  <summary>A::last</summary>
-  
-  #### returns the last element of an array, or null, if empty
+#### returns the last element of an array, or null, if empty
 
 ```php
 A::last([1, 2, 3, 4, 5]) // 5
@@ -310,34 +198,25 @@ A::last([1, 2, 3, 4, 5]) // 5
 A::last([]) // null
 ```
 
-</details>
+### A::init
 
-<details>
-  <summary>A::init</summary>
-  
-  #### returns a copy of a given array without the last element
+#### returns a copy of a given array without the last element
 
 ```php
 A::init([1, 2, 3, 4, 5]) // [1, 2, 3, 4]
 ```
 
-</details>
+### A::tail
 
-<details>
-  <summary>A::tail</summary>
-  
-  #### returns a copy of a given array without the first element
+#### returns a copy of a given array without the first element
 
 ```php
 A::tail([1, 2, 3, 4, 5]) // [2, 3, 4, 5]
 ```
 
-</details>
+### A::filter
 
-<details>
-  <summary>A::filter</summary>
-  
-  #### calls the given function on the elements of an array and returns every value where the function gave truthy value
+#### calls the given function on the elements of an array and returns every value where the function gave truthy value
 
 ```php
 $numbers = [1, 2, 3, 4, 5, 6];
@@ -349,12 +228,9 @@ function isOdd($n){
 A::filter('isOdd', $numbers); // [2, 4, 6]
 ```
 
-</details>
+### A::reject
 
-<details>
-  <summary>A::reject</summary>
-  
-  #### calls the given function on the elements of an array and removes every value where the function gave truthy value
+#### calls the given function on the elements of an array and removes every value where the function gave truthy value
 
 ```php
 $numbers = [1, 2, 3, 4, 5, 6];
@@ -366,12 +242,9 @@ function isOdd($n){
 A::reject('isOdd', $numbers); // [1, 3, 5]
 ```
 
-</details>
+### A::find
 
-<details>
-  <summary>A::find</summary>
-  
-  #### calls the given function on the elements of an array and returns the value for the first match. if there's no match, it will return `null`
+#### calls the given function on the elements of an array and returns the value for the first match. if there's no match, it will return `null`
 
 ```php
 $data = [
@@ -397,12 +270,9 @@ $result = A::find(fn($x) => $x["a"] === -4, $data);
 // $result = null
 ```
 
-</details>
+### A::findLast
 
-<details>
-  <summary>A::findLast</summary>
-  
-  #### calls the given function on the elements of an array and returns the value for the last match. if there's no match, it will return `null`
+#### calls the given function on the elements of an array and returns the value for the last match. if there's no match, it will return `null`
 
 ```php
 $data = [
@@ -428,12 +298,9 @@ $result = A::findLast(fn($x) => $x["a"] === -4, $data);
 // $result = null
 ```
 
-</details>
+### A::findIndex
 
-<details>
-  <summary>A::findIndex</summary>
-  
-  #### calls the given function on the elements of an array and returns the key for the first match. if there's no match it will return `null`
+#### calls the given function on the elements of an array and returns the key for the first match. if there's no match it will return `null`
 
 ```php
 $data = [1, 1, 1, 0, 0, 0, 0, 0];
@@ -451,12 +318,9 @@ $result = A::findIndex(fn($x) => $x === 2, $data);
 // $result = null
 ```
 
-</details>
+### A::findLastIndex
 
-<details>
-  <summary>A::findLastIndex</summary>
-  
-  #### calls the given function on the elements of an array and returns the key for the last match. if there's no match it will return `null`
+#### calls the given function on the elements of an array and returns the key for the last match. if there's no match it will return `null`
 
 ```php
 $data = [1, 1, 1, 0, 0, 0, 0, 0];
@@ -474,12 +338,9 @@ $result = A::findLastIndex(fn($x) => $x === 2, $data);
 // $result = null
 ```
 
-</details>
+### A::any
 
-<details>
-  <summary>A::any</summary>
-  
-  #### calls the given predicate function on the elements in the given array and returns true if for at least one of them the predicate returns true
+#### calls the given predicate function on the elements in the given array and returns true if for at least one of them the predicate returns true
 
 ```php
 $data = [2, 3, 5, 6, 7, 9, 10];
@@ -489,51 +350,27 @@ $result = A::any(fn($x) => $x % 5 === 0, $data);
 // $result = true
 ```
 
-</details>
+### A::none
 
-<details>
-  <summary>A::none</summary>
+### A::all
 
-</details>
+### A::includes
 
-<details>
-  <summary>A::all</summary>
+### A::contains
 
-</details>
-
-<details>
-  <summary>A::includes</summary>
-  
-</details>
-
-<details>
-  <summary>A::contains</summary>
-  
-</details>
-
-<details>
-  <summary>A::slice</summary>
+### A::slice
 
 #### Returns the elements of the given list from fromIndex (inclusive) to toIndex (exclusive)
 
-</details>
+### A::join
 
-<details>
-  <summary>A::join</summary>
+### A::pickRandom
 
-</details>
+#### selects a random item from the given array
 
-<details>
-  <summary>A::pickRandom</summary>
-  
-  #### selects a random item from the given array
+### A::concat
 
-</details>
-
-<details>
-  <summary>A::concat</summary>
-  
-  #### concatenates every argument into an array. if any of the arguments are numeric arrays, then those will get unnested
+#### concatenates every argument into an array. if any of the arguments are numeric arrays, then those will get unnested
 
 _See also: A::of()_
 
@@ -541,17 +378,11 @@ _See also: A::of()_
 A::concat([1, 2], 3, [4, 5]); // [1, 2, 3, 4, 5]
 ```
 
-</details>
+### A::zipObj
 
-<details>
-  <summary>A::zipObj</summary>
+### A::without
 
-</details>
-
-<details>
-  <summary>A::without</summary>
-  
-  #### removes items from the second array by values in the first array. if first value is not an array, then it is transformed into one
+#### removes items from the second array by values in the first array. if first value is not an array, then it is transformed into one
 
 ```php
 A::without([1, 3], [1, 2, 3, 4, 5]); // [2, 4, 5]
@@ -565,19 +396,16 @@ A::without(['a' => 12], [1, 2, 3, 4, ['a' => 12]]); // [1, 2, 3, 4]
 A::without('t', ['t', 'f', 'f', 't', 'f']); // ['f', 'f', 'f']
 ```
 
-</details>
-
-### String
+## String
 
 > Most string operations come with an optional 3rd parameter called $caseSensitivity,
 > which can be either `S::CASE_SENSITIVE` (default) or `S::CASE_INSENSITIVE`.
 
 > All string operations are multibyte safe!
 
-<details>
-  <summary>S::isString</summary>
-  
-  #### checks whether given argument is a string
+### S::isString
+
+#### checks whether given argument is a string
 
 ```php
 S::isString('hello'); // true
@@ -591,23 +419,17 @@ S::isString(['hello']); // false
 S::isString(304.2); // false
 ```
 
-</details>
+### S::length
 
-<details>
-  <summary>S::length</summary>
-  
-  #### counts the number of characters in the given parameter
+#### counts the number of characters in the given parameter
 
 ```php
 S::length('őz'); // 2 -- strlen('őz') returns 3
 ```
 
-</details>
+### S::isEmpty
 
-<details>
-  <summary>S::isEmpty</summary>
-  
-  #### checks whether the given string has no characters
+#### checks whether the given string has no characters
 
 ```php
 S::isEmpty(''); // true
@@ -617,12 +439,9 @@ S::isEmpty(''); // true
 S::isEmpty('caterpillar'); // false
 ```
 
-</details>
+### S::isNotEmpty
 
-<details>
-  <summary>S::isNotEmpty</summary>
-  
-  #### checks whether the given string contains any characters
+#### checks whether the given string contains any characters
 
 ```php
 S::isNotEmpty(''); // false
@@ -632,34 +451,25 @@ S::isNotEmpty(''); // false
 S::isNotEmpty('caterpillar'); // true
 ```
 
-</details>
+### S::toLower
 
-<details>
-  <summary>S::toLower</summary>
-  
-  #### converts every character in a string to lowercase
+#### converts every character in a string to lowercase
 
 ```php
 S::toLower('AsDf JkLÉ'); // "asdf jklé"
 ```
 
-</details>
+### S::toUpper
 
-<details>
-  <summary>S::toUpper</summary>
-  
-  #### converts every character in a string to uppercase
+#### converts every character in a string to uppercase
 
 ```php
 S::toUpper('AsDf JkLÉ'); // "ASDF JKLÉ"
 ```
 
-</details>
+### S::includes
 
-<details>
-  <summary>S::includes</summary>
-  
-  #### checks, if the string given as the 1st parameter is a substring of the 2nd parameter string
+#### checks, if the string given as the 1st parameter is a substring of the 2nd parameter string
 
 ```php
 S::includes('erf', 'butterfly'); // true
@@ -677,41 +487,29 @@ S::includes('ERF', 'butterfly', S::CASE_SENSITIVE); // false
 S::includes('', 'butterfly'); // false -- edge case
 ```
 
-</details>
+### S::contains
 
-<details>
-  <summary>S::contains</summary>
-  
-  #### alias for S::includes()
+#### alias for S::includes()
 
-</details>
+### S::split
 
-<details>
-  <summary>S::split</summary>
-  
-  #### splits a string into multiple parts at points matching another string
+#### splits a string into multiple parts at points matching another string
 
 ```php
 S::split("/", "foo/bar/baz") // ["foo", "bar", "baz"]
 ```
 
-</details>
+### S::splitAt
 
-<details>
-  <summary>S::splitAt</summary>
-  
-  #### splits a string into 2 at a given position
+#### splits a string into 2 at a given position
 
 ```php
 S::splitAt(3, "abcdef") // ["abc", "def"]
 ```
 
-</details>
+### S::equals
 
-<details>
-  <summary>S::equals</summary>
-  
-  #### compares two strings together to see if they match
+#### compares two strings together to see if they match
 
 ```php
 S::equals('asdf', 'asdf'); // true
@@ -725,12 +523,9 @@ S::equals('asdf', 'ASDF', S::CASE_INSENSITIVE); // true
 S::equals('asdf', 'ASDF', S::CASE_SENSITIVE); // false
 ```
 
-</details>
+### S::slice
 
-<details>
-  <summary>S::slice</summary>
-  
-  #### copies a substring between starting(inclusive) and ending(exclusive) positions
+#### copies a substring between starting(inclusive) and ending(exclusive) positions
 
 ```php
 S::slice(2, 5, "abcdefgh"); // "cde"
@@ -740,12 +535,9 @@ S::slice(2, 5, "abcdefgh"); // "cde"
 S::slice(-3, PHP_INT_MAX, "abcdefgh") // "fgh"
 ```
 
-</details>
+### S::startsWith
 
-<details>
-  <summary>S::startsWith</summary>
-  
-  #### checks if the second parameter starts with the first
+#### checks if the second parameter starts with the first
 
 ```php
 S::startsWith("inf", "infinity"); // true
@@ -759,12 +551,9 @@ S::startsWith("inf", "iNFinItY", S::CASE_INSENSITIVE); // true
 S::startsWith("inf", "iNFinItY", S::CASE_SENSITIVE); // false
 ```
 
-</details>
+### S::endsWith
 
-<details>
-  <summary>S::endsWith</summary>
-  
-  #### checks if the second parameter ends with the first
+#### checks if the second parameter ends with the first
 
 ```php
 S::endsWith("ed", "throwed"); // true
@@ -778,36 +567,27 @@ S::endsWith("ed", "tHRoWeD", S::CASE_SENSITIVE); // false
 S::endsWith("ed", "tHRoWeD", S::CASE_INSENSITIVE); // true
 ```
 
-</details>
+### S::trim
 
-<details>
-  <summary>S::trim</summary>
-  
-  #### removes leading and trailing whitespaces from a string
+#### removes leading and trailing whitespaces from a string
 
 ```php
 S::trim("  asd f     "); // "asd f"
 ```
 
-</details>
+### S::replace
 
-<details>
-  <summary>S::replace</summary>
-  
-  #### replaces substring with another
+#### replaces substring with another
 
 ```php
 S::replace("a", "e", "alabama"); // "elebeme"
 ```
 
-</details>
+## Object
 
-### Object
+### O::isObject
 
-<details>
-  <summary>O::isObject</summary>
-  
-  #### check whether the passed in argument is an object
+#### check whether the passed in argument is an object
 
 ```php
 $point = new stdClass();
@@ -820,12 +600,9 @@ O::isObject($point); // true
 O::isObject("asdf"); // false
 ```
 
-</details>
+### O::toPairs
 
-<details>
-  <summary>O::toPairs</summary>
-  
-  #### gets all keys and values of an array or object and returns it as array of key-value pairs
+#### gets all keys and values of an array or object and returns it as array of key-value pairs
 
 ```php
 $point = new stdClass();
@@ -847,17 +624,11 @@ $temperatures = [75, 44, 36];
 O::toPairs($temperatures); // [[0, 75], [1, 44], [2, 36]]
 ```
 
-</details>
+### O::pick
 
-<details>
-  <summary>O::pick</summary>
+### O::assoc
 
-</details>
-
-<details>
-  <summary>O::assoc</summary>
-  
-  #### assigns value to an object via a given key. already existing keys will get overwritten
+#### assigns value to an object via a given key. already existing keys will get overwritten
 
 ```php
 $point2d = new stdClass();
@@ -878,12 +649,9 @@ $point3d = O::assoc("z", 30, $point2d); // ["x" => 10, "y" => 20, "z" => 30]
 
 **Does not work on arrays with numeric keys!**
 
-</details>
+### O::dissoc
 
-<details>
-  <summary>O::dissoc</summary>
-  
-  #### removes a key from an object
+#### removes a key from an object
 
 ```php
 $point3d = new stdClass();
@@ -906,12 +674,9 @@ $point2d = O::dissoc("z", 30, $point3d); // ["x" => 10, "y" => 30]
 
 **Does not work on arrays with numeric keys!**
 
-</details>
+### O::has
 
-<details>
-  <summary>O::has</summary>
-  
-  #### checks presence of a key inside an object and an associative array
+#### checks presence of a key inside an object and an associative array
 
 uses `array_key_exists()` internally
 
@@ -930,20 +695,11 @@ O::has('x', $data); // true
 O::has('y', $data); // false
 ```
 
-</details>
+### O::keys
 
-<details>
-  <summary>O::keys</summary>
+### O::values
 
-</details>
-
-<details>
-  <summary>O::values</summary>
-
-</details>
-
-<details>
-  <summary>O::prop</summary>
+### O::prop
 
 #### Reads the given value for the given key from objects and associative arrays. If not found, then returns null.
 
@@ -962,14 +718,9 @@ O::prop('x', $data); // 10
 O::prop('y', $data); // null
 ```
 
-</details>
+## Functions
 
-### Functions
-
-<details>
-  <summary>F::complement</summary>
-
-</details>
+### F::complement
 
 ## Future plans
 
