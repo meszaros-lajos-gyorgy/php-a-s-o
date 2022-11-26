@@ -88,7 +88,7 @@ Plain numeric arrays are handled best via the methods in A, while associative ar
 _See also: [A::concat()](#aconcat)_
 
 ```php
-$items = A::of(1, 2, [3]); // [1, 2, [3]]
+A::of(1, 2, [3]); // [1, 2, [3]]
 ```
 
 ### A::isArray
@@ -135,9 +135,31 @@ A::isAssoc(["x" => 10, "y" => 20]); // true
 
 ### A::reduce
 
+#### Calls $fn with each element from left to right in the array and passes the returned value to the subsequent $fn calls
+
+_See also: [A::reduceRight()](#areduceright)_
+
+```php
+A::reduce($fn, $init, [1, 2, 3]); // same as $fn(3, $fn(2, $fn(1, $init)))
+```
+
 ### A::reverse
 
+#### Flips the order of values around in an array
+
+```php
+A::reverse([1, 2, 3]); // [3, 2, 1]
+```
+
 ### A::reduceRight
+
+#### Calls $fn with each element from right to left in the array and passes the returned value to the subsequent $fn calls
+
+_See also: [A::reduce()](#areduce)_
+
+```php
+A::reduceRight($fn, $init, [1, 2, 3]); // same as $fn(1, $fn(2, $fn(3, $init)))
+```
 
 ### A::sum
 
@@ -149,21 +171,97 @@ A::sum([1, 2, 3, 4, 5]); // 15
 
 ### A::map
 
+#### Calls $fn with all the elements and return the results in an array
+
+```php
+$numbers = [1, 2, 3, 4, 5];
+
+function double(int $n){
+  return $n * 2;
+}
+
+$doubles = A::map(double, $numbers); // [2, 4, 6, 8, 10]
+```
+
 ### A::keys
+
+#### returns the indices of an array
+
+_See also: [O::keys()](#okeys)_
+
+```php
+A::keys([3, 6, 9]); // [0, 1, 2]
+```
 
 ### A::values
 
+#### returns the values of an array
+
+_See also: [O::values()](#ovalues)_
+
+```php
+A::values([3, 6, 9]); // [3, 6, 9]
+```
+
 ### A::equals
+
+#### Compares two numeric arrays and returns true when their content is the same
+
+```php
+A::equals([1, 2, 3], [1, 2, 3]); // true
+```
+
+```php
+A::equals([1, 2, 3], [1, 2, 3, 4, 5]); // false
+```
 
 ### A::length
 
+#### Returns the size of an array
+
+```php
+A::length([1, 2, 3]); // 3
+```
+
 ### A::isEmpty
+
+#### Returns true when the given array has no elements inside
+
+_See also: [A::isNotEmpty()](#aisnotempty)_
+
+```php
+A::isEmpty([]); // true
+```
+
+```php
+A::isEmpty([1, 2, 3]); // false
+```
 
 ### A::isNotEmpty
 
+#### Returns true when the given array has elements inside
+
+_See also: [A::isEmpty()](#aisempty)_
+
+```php
+A::isNotEmpty([1, 2, 3]); // true
+```
+
+```php
+A::isNotEmpty([]); // false
+```
+
 ### A::ensureArray
 
-#### wraps parameter into an array if it's not a numeric array
+#### Wraps the given value into an array (even associative arrays) unless it already is
+
+```php
+A::ensureArray([10]) // [10]
+```
+
+```php
+A::ensureArray(['a' => 10]) // [['a' => 10]]
+```
 
 ```php
 A::ensureArray(123); // [123]

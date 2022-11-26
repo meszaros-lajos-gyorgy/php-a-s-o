@@ -65,7 +65,7 @@ class A
         return array_keys($data);
     }
 
-    // A::values([1 => 3, 3 => 6, 4 => 7]) -> [3, 6, 7]
+    // A::values([3, 6, 7]) -> [3, 6, 7]
     public static function values(array $data): array
     {
         return array_values($data);
