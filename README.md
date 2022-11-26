@@ -29,54 +29,6 @@ $berries = A::filter(function($fruit) {
 print_r($berries); // ['raspberry', 'strawberry', 'blueberry']
 ```
 
-## Concepts
-
-Every method is abide to the following rules ( or at least they should. if they don't, then 1) PRs are welcome, 2) Issues are welcome ):
-
-### stateless
-
-each method should get all the necessary info from the parameters and should not rely on any external parameters or state
-
-### static
-
-since every method is stateless, there is no need to create class instances
-
-### pure
-
-not using anything apart from the passed in parameters
-
-### immutable
-
-not going to change any of the parameters, no & references or stuff like that
-
-### the last parameter should be the input data you are working on...
-
-like in Lodash FP or Ramda
-
-### except if the argument list has optional parameters!
-
-suggestions are welcome on where to place optional parameters
-
-### not doing any validation on the parameters
-
-if you are using a method from `A`, then you better be sending it an array. PHP is a loosely typed language and you could spend all day validating input parameters.
-
-### not casting any of the input parameters
-
-it's the same as for the validation, you should check the data you pass to the function beforehand
-
-### does only a single, well defined thing
-
-small is beautiful, and maintainable - and probably easier to test later on when I'll get the willpower to write tests for this lib
-
-### null return values on error
-
-when an error happens and the underlying php function returns false (eg. end or strpos), then it's being normalized to null
-
-### camelCase naming
-
-Plain numeric arrays are handled best via the methods in A, while associative arrays and objects are handled via the methods in O.
-
 # API
 
 ## Array
@@ -840,6 +792,56 @@ O::prop('y', $data); // null
 ## Functions
 
 ### F::complement
+
+---
+
+## Concepts
+
+Every method is abide to the following rules ( or at least they should. if they don't, then 1) PRs are welcome, 2) Issues are welcome ):
+
+### stateless
+
+each method should get all the necessary info from the parameters and should not rely on any external parameters or state
+
+### static
+
+since every method is stateless, there is no need to create class instances
+
+### pure
+
+not using anything apart from the passed in parameters
+
+### immutable
+
+not going to change any of the parameters, no & references or stuff like that
+
+### the last parameter should be the input data you are working on...
+
+like in Lodash FP or Ramda
+
+### except if the argument list has optional parameters!
+
+suggestions are welcome on where to place optional parameters
+
+### not doing any validation on the parameters
+
+if you are using a method from `A`, then you better be sending it an array. PHP is a loosely typed language and you could spend all day validating input parameters.
+
+### not casting any of the input parameters
+
+it's the same as for the validation, you should check the data you pass to the function beforehand
+
+### does only a single, well defined thing
+
+small is beautiful, and maintainable - and probably easier to test later on when I'll get the willpower to write tests for this lib
+
+### null return values on error
+
+when an error happens and the underlying php function returns false (eg. end or strpos), then it's being normalized to null
+
+### camelCase naming
+
+Plain numeric arrays are handled best via the methods in A, while associative arrays and objects are handled via the methods in O.
 
 ## Future plans
 
