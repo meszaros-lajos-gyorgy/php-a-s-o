@@ -64,7 +64,7 @@ Plain numeric arrays are handled best via the methods in A, while associative ar
 
 #### Concatenates every argument into an array as is
 
-_See also: A::concat()_
+_See also: [A::concat()](#aconcat)_
 
 ```php
 $items = A::of(1, 2, [3]); // [1, 2, [3]]
@@ -372,7 +372,7 @@ $result = A::any(fn($x) => $x % 5 === 0, $data);
 
 #### concatenates every argument into an array. if any of the arguments are numeric arrays, then those will get unnested
 
-_See also: A::of()_
+_See also: [A::of()](#aof)_
 
 ```php
 A::concat([1, 2], 3, [4, 5]); // [1, 2, 3, 4, 5]
