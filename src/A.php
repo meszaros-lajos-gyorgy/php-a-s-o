@@ -361,7 +361,7 @@ class A
     }
 
     // A::pickRandoms(2, [1, 2, 3, 4, 5]) -> [5, 2]
-    public static function pickRandoms(int $amount = 1, array $data): array
+    public static function pickRandoms(int $amount, array $data): array
     {
         if (self::isEmpty($data) || $amount <= 0) {
             return [];
