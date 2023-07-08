@@ -6,14 +6,16 @@ use stdClass;
 
 class O
 {
-    // O::isObject(new stdClass()) -> true
+    /** O::isObject(new stdClass()) -> true */
     public static function isObject($data): bool
     {
         return $data !== null && is_object($data);
     }
 
-    // O::toPairs(['a' => 1, 'b' => 2]) -> [['a', 1], ['b', 2]]
-    // $x = new stdClass(); $x->a = 10; O::toPairs($x) -> [['a', 10]]
+    /**
+     * O::toPairs(['a' => 1, 'b' => 2]) -> [['a', 1], ['b', 2]]
+     * $x = new stdClass(); $x->a = 10; O::toPairs($x) -> [['a', 10]]
+     */
     public static function toPairs($data): array
     {
         if (self::isObject($data)) {
@@ -29,7 +31,7 @@ class O
         return $entries;
     }
 
-    // $coord = {x:10, y:20, z:30}; O::pick(['x', 'y'], $coord) -> {x:10, y:20}
+    /** $coord = {x:10, y:20, z:30}; O::pick(['x', 'y'], $coord) -> {x:10, y:20} */
     public static function pick(array $keys, $data): object
     {
         return A::reduce(
@@ -44,7 +46,7 @@ class O
         );
     }
 
-    // O::assoc('foo', 'bar', {}) -> {foo: 'bar'}
+    /** O::assoc('foo', 'bar', {}) -> {foo: 'bar'} */
     public static function assoc(string $key, $value, $data)
     {
         if (self::isObject($data)) {
@@ -86,7 +88,7 @@ class O
         return $tmp;
     }
 
-    // O::assocPath(['foo', 'bar'], 12, {}) -> {foo: {bar: 12}}
+    /** O::assocPath(['foo', 'bar'], 12, {}) -> {foo: {bar: 12}} */
     public static function assocPath($path, $value, $data)
     {
         $tmp = &$data;
@@ -105,7 +107,7 @@ class O
         return $data;
     }
 
-    // O::dissoc('foo', {foo: 'bar', fizz: 'buzz'}) -> {fizz: 'buzz'}
+    /** O::dissoc('foo', {foo: 'bar', fizz: 'buzz'}) -> {fizz: 'buzz'} */
     public static function dissoc(string $key, $data)
     {
         if (self::isObject($data)) {
@@ -119,7 +121,7 @@ class O
         return $data;
     }
 
-    // O::has('x', {x:10, y:20}) -> true
+    /** O::has('x', {x:10, y:20}) -> true */
     public static function has(string $key, $data): bool
     {
         if (self::isObject($data)) {
@@ -133,7 +135,7 @@ class O
         return false;
     }
 
-    // O::keys(['a' => 1, 'b' => 2]) -> ['a', 'b']
+    /** O::keys(['a' => 1, 'b' => 2]) -> ['a', 'b'] */
     public static function keys($data): array
     {
         if (self::isObject($data)) {
@@ -145,7 +147,7 @@ class O
         return [];
     }
 
-    // O::values(['a' => 1, 'b' => 2]) -> [1, 2]
+    /** O::values(['a' => 1, 'b' => 2]) -> [1, 2] */
     public static function values($data): array
     {
         if (self::isObject($data)) {
@@ -157,7 +159,7 @@ class O
         return [];
     }
 
-    // O::prop('x', ['x' => 10]) -> 10
+    /** O::prop('x', ['x' => 10]) -> 10 */
     public static function prop($key, $data)
     {
         if (self::isObject($data)) {
